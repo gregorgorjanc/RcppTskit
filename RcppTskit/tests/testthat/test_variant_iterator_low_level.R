@@ -77,6 +77,10 @@ test_that("low-level variant iterator validates bounds", {
 
 test_that("low-level variant iterator validates site-index range helper", {
   expect_error(
+    test_variant_site_index_range("not-a-number", "0"),
+    "start and stop must be valid base-10 unsigned integer strings"
+  )
+  expect_error(
     test_variant_site_index_range("2147483648", "0"),
     "Site index exceeds tsk_id_t range"
   )
