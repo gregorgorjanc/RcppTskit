@@ -26,16 +26,27 @@ reticulate Python module.}
 \code{get_tskit_py} returns the reticulate Python module \code{tskit}
   if successful. Otherwise it throws an error (when \code{object_name} exists
   but is not a reticulate Python module) or returns \code{simpleError}
-  (when installation or import failed). \code{check_tskit_py} returns
+  (when \code{reticulate} is unavailable or Python module installation or
+  import failed). \code{check_tskit_py} returns
   \code{TRUE} if \code{object} is a reticulate Python module or \code{FALSE}
-  otherwise.
+  with a message otherwise, including when \code{reticulate} is unavailable.
+  With \code{stop = TRUE}, a failed check throws an error instead.
 }
 \description{
-This function imports the reticulate Python \code{tskit} module.
-  If it is not yet installed, it attempts to install it first.
+This function imports the Python \code{tskit} module through
+  \code{reticulate}. If the Python module is not yet installed, it attempts
+  to install it first.
 }
 \details{
-This function is meant for users running \code{tskit <- get_tskit_py()}
+Python interoperability requires the optional \code{reticulate}
+  R package (>= 1.43.0). Install or update it with
+  \code{install.packages("reticulate")} before calling this function.
+  This function does not install the R package. It attempts to prepare and
+  import the Python module, which may require internet access on first use.
+  See \url{https://rstudio.github.io/reticulate/articles/python_packages.html}
+  for Python environment setup, including manually selected environments.
+
+  This function is meant for users running \code{tskit <- get_tskit_py()}
   or similar code, and for other functions in this package that need the
   \code{tskit} reticulate Python module. The point of \code{get_tskit_py} is
   to avoid importing the module repeatedly; if it has been imported already,

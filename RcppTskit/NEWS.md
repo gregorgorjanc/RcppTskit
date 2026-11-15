@@ -71,6 +71,11 @@ Jinyang Liang and Hannes Becher.
 
 ### Changed
 
+- Made `reticulate` optional by moving it to `Suggests`.
+  Core R/C++ does not require `reticulate` or its `png` dependency,
+  so this change reduces installation requirements for users and downstream packages.
+  Python interoperability remains available with `reticulate` installed and
+  a working Python environment containing `tskit`.
 - Renamed low-level C++ and R API names such that we map onto `tskit C` API,
   for example, `RcppTskit` functions are named `rtsk_treeseq_load()`,
   while `tskit C` name is `tsk_treeseq_load()`.

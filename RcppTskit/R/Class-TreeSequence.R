@@ -212,6 +212,8 @@ TreeSequence <- R6Class(
     #'   By default, it calls \code{\link{get_tskit_py}} to obtain the module.
     #' @param cleanup logical; delete the temporary file at the end of the function?
     #' @return \code{TreeSequence} object in reticulate \code{Python}.
+    #' @details This method requires the optional \code{reticulate} R package.
+    #'   See \code{\link{get_tskit_py}} for installation and Python setup.
     #' @seealso \code{\link{ts_py_to_r}}, \code{\link{ts_load}}, and
     #'   \code{\link[=TreeSequence]{TreeSequence$dump}}.
     #' @examples

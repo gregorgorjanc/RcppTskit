@@ -42,17 +42,17 @@ Imports:
     bit64,
     methods,
     R6,
-    Rcpp (>= 1.0.8),
-    reticulate (>= 1.43.0)
+    Rcpp (>= 1.0.8)
 Suggests:
     covr,
     curl,
     knitr,
     quarto (>= 1.4),
+    reticulate (>= 1.43.0),
     spelling,
     testthat (>= 3.0.0)
 LinkingTo:
-    Rcpp (>= 0.12.10)
+    Rcpp (>= 1.0.8)
 VignetteBuilder:
     quarto
 SystemRequirements: C++20, Quarto command line tools (for building vignettes)

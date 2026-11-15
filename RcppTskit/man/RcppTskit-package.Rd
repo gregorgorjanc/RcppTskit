@@ -28,6 +28,12 @@ explore the \code{RcppTskit} help pages of \code{R} functions, while
 developers should explore the provided \code{RcppTskit:::rtsk_*} low-level
 \code{R} and \code{C++} functions.
 }
+\details{
+The core R and C++ interfaces work without \code{reticulate} or
+  Python. Python interoperability requires the optional \code{reticulate}
+  R package and a Python environment containing \code{tskit}. See
+  \code{\link{get_tskit_py}} for installation and setup instructions.
+}
 \examples{
 vignette("RcppTskit_intro")
 }

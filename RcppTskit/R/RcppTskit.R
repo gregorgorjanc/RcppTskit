@@ -1,8 +1,43 @@
 # A range of functions
 
+#' @title Check availability of reticulate R package
+#' @description Check whether the optional \code{reticulate} namespace can be
+#'   loaded before using Python interoperability.
+#' @param stop logical; whether to throw an error if \code{reticulate} is
+#'   unavailable. Defaults to \code{TRUE}.
+#' @return \code{TRUE} if the \code{reticulate} namespace can be loaded.
+#'   Otherwise, throws an error when \code{stop = TRUE}, or returns a
+#'   \code{simpleError} object when \code{stop = FALSE}.
+#' @details This internal helper does not initialise Python or check whether
+#'   the Python \code{tskit} module is available. Returning an error object
+#'   with \code{stop = FALSE} preserves the return convention of
+#'   \code{\link{get_tskit_py}}.
+#' @keywords internal
+check_reticulate <- function(stop = TRUE) {
+  if (
+    requireNamespace(
+      "reticulate",
+      quietly = TRUE
+    )
+  ) {
+    return(TRUE)
+  }
+  error <- simpleError(
+    paste0(
+      "Python interoperability requires the R package 'reticulate'. ",
+      "Install or update it with install.packages(\"reticulate\")."
+    )
+  )
+  if (stop) {
+    stop(error)
+  }
+  return(error)
+}
+
 #' @title Get the reticulate \code{tskit} Python module
-#' @description This function imports the reticulate Python \code{tskit} module.
-#'   If it is not yet installed, it attempts to install it first.
+#' @description This function imports the Python \code{tskit} module via
+#'   \code{reticulate}. If the Python module is not yet installed, it attempts
+#'   to install it first.
 #' @param object_name character name of the object holding the reticulate
 #'   \code{tskit} module. If this object exists in the global R environment and
 #'   is a reticulate Python module, it is returned. Otherwise, the function
@@ -17,12 +52,17 @@
 #'   to avoid importing the module repeatedly; if it has been imported already,
 #'   we reuse that instance. This process can be sensitive to the reticulate
 #'   Python setup, module availability, and internet access.
+#'
+#'   This Python interoperability requires the optional \code{reticulate}
+#'   R package. Install or update it with \code{install.packages("reticulate")}
+#'   before calling this function - this function does not install it.
 #' @return \code{get_tskit_py} returns the reticulate Python module \code{tskit}
 #'   if successful. Otherwise it throws an error (when \code{object_name} exists
 #'   but is not a reticulate Python module) or returns \code{simpleError}
-#'   (when installation or import failed). \code{check_tskit_py} returns
-#'   \code{TRUE} if \code{object} is a reticulate Python module or \code{FALSE}
-#'   otherwise.
+#'   (when \code{reticulate} is unavailable or Python module installation or
+#'   import failed). \code{check_tskit_py} returns \code{TRUE} if \code{object}
+#'   is a reticulate Python module or \code{FALSE} with a message otherwise,
+#'   including when \code{reticulate} is unavailable.
 #' @examples
 #' \dontrun{
 #'   tskit <- get_tskit_py()
@@ -33,6 +73,10 @@
 #' }
 #' @export
 get_tskit_py <- function(object_name = "tskit", force = FALSE) {
+  dependency <- check_reticulate(stop = FALSE)
+  if (is(dependency, "simpleError")) {
+    return(dependency)
+  }
   if (!force) {
     test <- !is.null(object_name) &&
       exists(object_name, envir = .GlobalEnv, inherits = FALSE)
@@ -84,6 +128,11 @@ get_tskit_py <- function(object_name = "tskit", force = FALSE) {
 #' @describeIn get_tskit_py Test whether \code{get_tskit_py} returned a reticulate Python module object
 #' @export
 check_tskit_py <- function(object, stop = FALSE) {
+  dependency <- check_reticulate(stop = stop)
+  if (is(dependency, "simpleError")) {
+    message(conditionMessage(dependency))
+    return(FALSE)
+  }
   test <- reticulate::is_py_object(object) &&
     (is(object, "python.builtin.module"))
   if (test) {
@@ -769,6 +818,7 @@ rtsk_table_collection_r_to_py <- function(
 #   }
 # }
 rtsk_treeseq_py_to_r <- function(ts, cleanup = TRUE) {
+  check_reticulate()
   if (!reticulate::is_py_object(ts)) {
     stop("ts must be a reticulate Python object!")
   }
@@ -818,6 +868,7 @@ rtsk_treeseq_py_to_r <- function(ts, cleanup = TRUE) {
 #   }
 # }
 rtsk_table_collection_py_to_r <- function(tc, cleanup = TRUE) {
+  check_reticulate()
   if (!reticulate::is_py_object(tc)) {
     stop("tc must be a reticulate Python object!")
   }
@@ -838,6 +889,7 @@ rtsk_table_collection_py_to_r <- function(tc, cleanup = TRUE) {
 #' @return A \code{\link{TreeSequence}} object.
 #' @details Because this transfer is via a temporary file,
 #'   the file UUID property changes.
+#'   This function requires the optional \code{reticulate} R package.
 #' @seealso \code{\link[=TreeSequence]{TreeSequence$r_to_py}}
 #'   \code{\link{ts_load}}, and \code{\link[=TreeSequence]{TreeSequence$dump}}.
 #' @examples
@@ -877,6 +929,7 @@ ts_py_to_r <- function(ts, cleanup = TRUE) {
 #' @return A \code{\link{TableCollection}} object.
 #' @details Because this transfer is via a temporary file,
 #'   the file UUID property changes.
+#'   This function requires the optional \code{reticulate} R package.
 #' @seealso \code{\link[=TableCollection]{TableCollection$r_to_py}}
 #'   \code{\link{tc_load}}, and \code{\link[=TableCollection]{TableCollection$dump}}.
 #' @examples

@@ -29,7 +29,6 @@
 #' @importFrom methods is
 #' @importFrom R6 R6Class
 #' @importFrom Rcpp cppFunction registerPlugin
-#' @importFrom reticulate import is_py_object py_module_available py_require
 #'
 #' @examples
 #' vignette("RcppTskit_intro")

@@ -21,6 +21,8 @@ This function saves a table collection from reticulate Python
 \details{
 Because this transfer is via a temporary file,
   the file UUID property changes.
+  This function requires the optional \code{reticulate} R package.
+  See \code{\link{get_tskit_py}} for installation and Python setup.
 }
 \examples{
 \dontrun{

@@ -29,6 +29,8 @@ Install a current [R release](https://cran.r-project.org/) and Git.
 An IDE such as Positron or RStudio is optional.
 Building `RcppTskit` from source requires C and C++ compilers,
 including support for C++20, and `make`.
+See [here](https://r-pkgs.org/setup.html#setup-tools) for introduction to this topic.
+Essentially:
 
 * On macOS, install Apple's Command Line Tools with `xcode-select --install`.
   Follow [R's macOS tools guidance](https://mac.r-project.org/tools/)
@@ -118,6 +120,9 @@ install.packages(c("pak", "devtools"))
 pak::local_install_dev_deps("RcppTskit")
 ```
 
+This includes `reticulate` from `Suggests` for the Python interoperability tests.
+It is optional for users of the core R and C++ interfaces.
+
 ### Quarto: R package and executable
 
 Building the HTML vignette requires **both** the `quarto` R package and the
@@ -149,15 +154,11 @@ brew install checkbashisms
 
 ### Python interoperability tests
 
-The `C/C++` interface works without a `Python` `tskit` installation.
-To exercise the `Python` interoperability tests, prepare `Python` and `tskit`
-through `reticulate` in a fresh `R` session, before `Python` has been initialised:
-
-```r
-reticulate::py_require("tskit")
-tskit <- reticulate::import("tskit")
-reticulate::py_config()
-```
+The core R and C++ interfaces work without `reticulate` or Python.
+The R dependency step above installs `reticulate`.
+If you skipped that step, run `install.packages("reticulate")` first and
+then functions like `get_tskit_py()` and others will enable you to use
+`tskit` Python from within R.
 
 ### `pre-commit` and code quality tools
 

@@ -22,10 +22,4 @@ importFrom(bit64,
   is.integer64
 )
 importFrom(methods,is)
-importFrom(reticulate,
-  import,
-  is_py_object,
-  py_module_available,
-  py_require
-)
 useDynLib(RcppTskit, .registration = TRUE)

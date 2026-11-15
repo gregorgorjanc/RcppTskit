@@ -19,6 +19,8 @@ This vignette introduces working with tree sequences in `R` using the
 `RcppTskit` package.
 `RcppTskit` provides `R` access to the `tskit C` application programming interface (API)
 [@jeffery2026population] <https://tskit.dev/tskit/docs/stable/c-api.html>.
+Python interoperability is an optional feature with a separate setup via
+`reticulate` R package.
 If you are new to tree sequences and the broader concept of ancestral
 recombination graphs (ARGs),
 see @brandt2024promise, @lewanski2024era, @nielsen2024inference, and @wong2024general.
@@ -296,6 +298,16 @@ RcppTskit:::rtsk_treeseq_get_num_individuals(xptr)
 ```
 
 ### 2) Pass a tree sequence between `R` and reticulate or standard `Python`
+
+The reticulate Python approach requires the optional `reticulate` R package and
+a Python environment containing `tskit`.
+Install the R package before running these examples:
+
+```r
+install.packages("reticulate")
+```
+
+The `get_tskit_py()` below attempts to install and import the Python `tskit` module.
 
 ```{r}
 #| label: use_case_2

@@ -1012,7 +1012,9 @@ TableCollection <- R6Class(
     #' @param tskit_module reticulate \code{Python} module of \code{tskit}.
     #'   By default, it calls \code{\link{get_tskit_py}} to obtain the module.
     #' @param cleanup logical; delete the temporary file at the end of the function?
-    #' @details See \url{https://tskit.dev/tutorials/tables_and_editing.html#tables-and-editing}
+    #' @details This method requires the optional \code{reticulate} R package.
+    #'   See \code{\link{get_tskit_py}} for installation and Python setup.
+    #'   See \url{https://tskit.dev/tutorials/tables_and_editing.html#tables-and-editing}
     #'   on what you can do with the tables.
     #' @return \code{TableCollection} object in reticulate \code{Python}.
     #' @seealso \code{\link{tc_py_to_r}}, \code{\link{tc_load}}, and

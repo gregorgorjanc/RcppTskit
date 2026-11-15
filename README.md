@@ -101,18 +101,16 @@ install.packages("RcppTskit", repos = r_universe_and_cran)
 vignette("RcppTskit_intro")
 ```
 
+## Development
+
 To install the latest development version (possibly unstable!) from Github
 use the following code.
 Note that you will have to compile the `C/C++` code and vignette,
-so you will require the complete build toolchain,
-including compilers, other `R` packages, and `quarto`.
-See
-<https://r-pkgs.org/setup.html#setup-tools> for introduction to this topic,
-<https://cran.r-project.org/bin/windows/Rtools> for Windows tools, and
-<https://mac.r-project.org/tools> for macOS tools.
+so you will require the complete build toolchain
+as described in [README_DEVEL.md](README_DEVEL.md).
 
 ```
-# install.packages("remotes") # If you don't have it already
+install.packages("remotes")
 
 # Install the main branch
 remotes::install_github("HighlanderLab/RcppTskit/RcppTskit@main",
@@ -128,7 +126,3 @@ remotes::install_github("HighlanderLab/RcppTskit/RcppTskit@v0.2.0")
 # Read the introduction to RcppTskit
 vignette("RcppTskit_intro")
 ```
-
-## Development
-
-See [README_DEVEL.md](README_DEVEL.md)

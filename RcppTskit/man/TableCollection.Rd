@@ -1804,7 +1804,9 @@ By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See \url{https://tskit.dev/tutorials/tables_and_editing.html#tables-and-editing}
+    This method requires the optional \code{reticulate} R package.
+  See \code{\link{get_tskit_py}} for installation and Python setup.
+  See \url{https://tskit.dev/tutorials/tables_and_editing.html#tables-and-editing}
   on what you can do with the tables.
   }
   \subsection{Returns}{

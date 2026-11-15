@@ -580,6 +580,10 @@ By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
     }
     \if{html}{\out{</div>}}
   }
+  \subsection{Details}{
+    This method requires the optional \code{reticulate} R package.
+  See \code{\link{get_tskit_py}} for installation and Python setup.
+  }
   \subsection{Returns}{
     \code{TreeSequence} object in reticulate \code{Python}.
   }

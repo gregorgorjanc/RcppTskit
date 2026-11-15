@@ -1,4 +1,5 @@
 skip_if_offline_or_on_cran <- function() {
+  skip_if_not_installed("reticulate")
   if (!(requireNamespace("covr", quietly = TRUE) && covr::in_covr())) {
     # We need internet connection for get_tskit_py()
     skip_if_offline()
@@ -35,7 +36,7 @@ test_that("get_tskit_py() works", {
   tskit <- get_tskit_py()
   # lobstr::obj_addr(tskit)
   # "0x12218b910"
-  expect_true(is_py_object(tskit))
+  expect_true(reticulate::is_py_object(tskit))
   expect_true(is(tskit, "python.builtin.module"))
   expect_equal(tskit$`__name__`, "tskit")
 

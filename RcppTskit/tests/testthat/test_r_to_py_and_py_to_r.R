@@ -1,4 +1,5 @@
 skip_if_no_tskit_py <- function() {
+  skip_if_not_installed("reticulate")
   if (!(requireNamespace("covr", quietly = TRUE) && covr::in_covr())) {
     # We need internet connection for get_tskit_py()
     skip_if_offline()
