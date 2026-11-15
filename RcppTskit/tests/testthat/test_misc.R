@@ -12,42 +12,42 @@ test_that("tskit_version() works", {
 })
 
 test_that("tsk_bug_assert() works", {
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_error(RcppTskit:::test_tsk_bug_assert_c())
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_error(RcppTskit:::test_tsk_bug_assert_cpp())
 })
 
 test_that("tsk_trace_error() works", {
   t <- "You have to compile with -DTSK_TRACE_ERRORS to run these tests. See src/Makevars.in."
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   skip_if_not(RcppTskit:::tsk_trace_errors_defined(), t)
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_warning(RcppTskit:::test_tsk_trace_error_c())
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_warning(RcppTskit:::test_tsk_trace_error_cpp())
 })
 
 test_that("validate_options() branches are covered", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_equal(RcppTskit:::test_validate_options(0L, 0L), 0L)
 
   # negative options branch
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_validate_options(-1L, 0L),
     regexp = "test_validate_options does not support negative options"
   )
 
   # unsupported bits branch
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_validate_options(1L, 0L),
     regexp = "test_validate_options only supports options"
   )
 
   # non-zero supported flags branch
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_validate_options(1L, 1L),
     regexp = "test_validate_options does not support non-zero options"
@@ -55,12 +55,12 @@ test_that("validate_options() branches are covered", {
 })
 
 test_that("tsk_flags_t conversion rejects values outside the R integer range", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_identical(
     RcppTskit:::test_rtsk_wrap_tsk_flags_as_int(.Machine$integer.max),
     .Machine$integer.max
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_rtsk_wrap_tsk_flags_as_int(
       as.numeric(.Machine$integer.max) + 1
@@ -73,7 +73,7 @@ test_that("tsk_flags_t conversion rejects values outside the R integer range", {
 
   invalid_tsk_flags <- c(-1, 1.5, Inf, NaN, 2^32)
   for (value in invalid_tsk_flags) {
-    # jarl-ignore internal_function: it's just a test
+    # jarl-ignore undesirable_operator: for unit testing
     expect_error(
       RcppTskit:::test_rtsk_wrap_tsk_flags_as_int(value),
       regexp = "value must be an integer within the tsk_flags_t range"
@@ -82,24 +82,24 @@ test_that("tsk_flags_t conversion rejects values outside the R integer range", {
 })
 
 test_that("R-side integer and row-index validators cover message branches", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_no_error(RcppTskit:::validate_integer_scalar_arg(1, "x"))
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_equal(
     RcppTskit:::validate_integer_scalar_arg(1L, "x", strict = TRUE),
     1L
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(1, "x", strict = TRUE),
     regexp = "x must be a non-NA integer scalar within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(1.5, "x"),
     regexp = "x must be a non-NA integer scalar within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(
       as.numeric(.Machine$integer.max) + 1,
@@ -107,12 +107,12 @@ test_that("R-side integer and row-index validators cover message branches", {
     ),
     regexp = "x must be a non-NA integer scalar within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(1L, "x", minimum = 2L),
     regexp = "x must be a non-NA integer scalar within 32-bit range \\(>= 2\\)!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(
       -as.numeric(.Machine$integer.max) - 2,
@@ -120,25 +120,25 @@ test_that("R-side integer and row-index validators cover message branches", {
     ),
     regexp = "x must be a non-NA integer scalar within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_integer_scalar_arg(NULL, "x"),
     regexp = "x cannot be NULL\\."
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_no_error(
     RcppTskit:::validate_optional_integer_vector_arg(c(1, 2, 3), "ids")
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_equal(
     RcppTskit:::validate_optional_integer_vector_arg(c(1, 2, 3), "ids"),
     invisible(c(1L, 2L, 3L))
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_no_error(
     RcppTskit:::validate_optional_integer_vector_arg(c(1.0, 2.0), "ids")
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_optional_integer_vector_arg(
       c(1, 2, 3),
@@ -147,12 +147,12 @@ test_that("R-side integer and row-index validators cover message branches", {
     ),
     regexp = "ids must be NULL or an integer vector with no NA values within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_optional_integer_vector_arg(c(1, 2.5), "ids"),
     regexp = "ids must be NULL or an integer vector with no NA values within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::validate_optional_integer_vector_arg(
       c(as.numeric(.Machine$integer.max) + 1),
@@ -160,12 +160,12 @@ test_that("R-side integer and row-index validators cover message branches", {
     ),
     regexp = "ids must be NULL or an integer vector with no NA values within 32-bit range!"
   )
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_no_error(RcppTskit:::validate_row_index(NULL, allow_null = TRUE))
 })
 
 test_that("optional numeric-vector validator enforces type and length", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   validator <- RcppTskit:::validate_optional_numeric_vector_arg
 
   expect_no_error(validator(NULL, "x", lengths = c(1L, 2L)))
@@ -204,7 +204,7 @@ test_that("optional numeric-vector validator enforces type and length", {
 })
 
 test_that("numeric closeness matches NumPy semantics for finite values and infinities", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   is_close <- RcppTskit:::numeric_values_are_close
 
   tolerance <- 1e-08 + 1e-05 * 3
@@ -219,46 +219,46 @@ test_that("numeric closeness matches NumPy semantics for finite values and infin
 })
 
 test_that("rtsk_wrap_tsk_size_t_as_integer64() works", {
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   x <- RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("0")
   expect_true(bit64::is.integer64(x))
   expect_equal(x, bit64::as.integer64("0"))
 
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   x <- RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("42")
   expect_true(bit64::is.integer64(x))
   expect_equal(as.character(x), "42")
 
   # max signed 64-bit integer (limit of bit64::integer64)
   max_i64 <- "9223372036854775807"
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   x <- RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64(max_i64)
   expect_true(bit64::is.integer64(x))
   expect_equal(as.character(x), max_i64)
 
   # first value above signed 64-bit range
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("9223372036854775808"),
     regexp = "exceeds bit64::integer64 maximum"
   )
 
   # invalid numeric format
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("not_a_number"),
     regexp = "base-10 unsigned integer string"
   )
 
   # parsed prefix only; remaining characters should fail strict parse check
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("123abc"),
     regexp = "base-10 unsigned integer string"
   )
 
   # force range-check branch (test-only path)
-  # jarl-ignore internal_function: it's just a test
+  # jarl-ignore undesirable_operator: for unit testing
   expect_error(
     RcppTskit:::test_rtsk_wrap_tsk_size_t_as_integer64("1", TRUE),
     regexp = "value is out of range for tsk_size_t"

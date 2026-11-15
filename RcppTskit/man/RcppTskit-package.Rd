@@ -10,7 +10,7 @@
 ancestral recombination graphs (ARGs) using succinct tree sequence encoding.
 The tree sequence encoding of an ARG is described in Wong et al. (2024)
 <doi:10.1093/genetics/iyae100>, while \code{tskit} project is
-described in Jeffrey et al. (2026) <doi:10.48550/arXiv.2602.09649>.
+described in Jeffery et al. (2026) <doi:10.1038/s41592-026-03325-1>.
 See also \url{https://tskit.dev} for project news, documentation, and tutorials.
 \code{Tskit} provides \code{Python}, \code{C}, and \code{Rust} application
 programming interfaces (APIs). The \code{Python} API can be called from
@@ -41,6 +41,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Gregor Gorjanc \email{gregor.gorjanc@gmail.com} (\href{https://orcid.org/0000-0001-8008-2787}{ORCID}) [copyright holder]
+
+Authors:
+\itemize{
+  \item Gregor Gorjanc \email{gregor.gorjanc@gmail.com} (\href{https://orcid.org/0000-0001-8008-2787}{ORCID}) [copyright holder]
+}
 
 Other contributors:
 \itemize{

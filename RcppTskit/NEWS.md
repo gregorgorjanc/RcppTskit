@@ -87,6 +87,8 @@ Jinyang Liang and Hannes Becher.
 
 ### Maintenance
 
+- Update the `tskit` citation to the published Nature Methods paper.
+- Document setup on a new development machine.
 - Turn vignette URL as hyperlinks and similar cosmetics.
 - Clarify that the `R` API combines a Python-inspired `R6` object model with
   operations that map directly to the `tskit C` API.

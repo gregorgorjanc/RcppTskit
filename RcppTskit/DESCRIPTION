@@ -17,7 +17,7 @@ Description: 'Tskit' enables efficient storage, manipulation, and analysis
     of ancestral recombination graphs (ARGs) using succinct tree sequence
     encoding. The tree sequence encoding of an ARG is described in Wong et
     al. (2024) <doi:10.1093/genetics/iyae100>, while 'tskit' project is
-    described in Jeffrey et al. (2026) <doi:10.48550/arXiv.2602.09649>.
+    described in Jeffery et al. (2026) <doi:10.1038/s41592-026-03325-1>.
     See also <https://tskit.dev> for project news, documentation, and
     tutorials. 'Tskit' provides 'Python', 'C', and 'Rust' application
     programming interfaces (APIs). The 'Python' API can be called from 'R'
@@ -46,15 +46,17 @@ Imports:
     reticulate (>= 1.43.0)
 Suggests:
     covr,
+    curl,
     knitr,
-    quarto,
+    quarto (>= 1.4),
     spelling,
     testthat (>= 3.0.0)
 LinkingTo:
     Rcpp (>= 0.12.10)
 VignetteBuilder:
     quarto
+SystemRequirements: C++20, Quarto command line tools (for building vignettes)
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-GB
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.1.1

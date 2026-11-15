@@ -12,14 +12,35 @@ you agree to abide by its terms.
 This document describes a practical workflow for contributing to `RcppTskit`.
 It assumes that you are comfortable working in a terminal and
 with terminal-based tools.
-The examples use macOS,
-but Linux workflows should be very similar, and
-Windows users can usually follow the same steps from WSL.
+The shell examples assume macOS.
+Linux users can use their distribution's package manager, and
+Windows users can use native R with Rtools or a separate Linux setup in WSL.
 
 ## Setup
 
-Complete this section once per clone.
+Set up the system tools once per computer and R dependencies for each R library.
+Repeat the R dependency step after upgrading R or moving to a new laptop.
+Install Git hooks once per clone.
 Everything before `RcppTskit changes, checks, and contributing` is setup.
+
+### R and build tools
+
+Install a current [R release](https://cran.r-project.org/) and Git.
+An IDE such as Positron or RStudio is optional.
+Building `RcppTskit` from source requires C and C++ compilers,
+including support for C++20, and `make`.
+
+* On macOS, install Apple's Command Line Tools with `xcode-select --install`.
+  Follow [R's macOS tools guidance](https://mac.r-project.org/tools/)
+  for the matching GNU Fortran compiler when building R dependencies from source.
+* On Linux, say Debian/Ubuntu, install `r-base-dev` and `build-essential`.
+  Source installations of R dependencies may also need development libraries;
+  follow the dependency installer's system-requirement messages.
+* On Windows, install the [Rtools version matching your R release](https://cran.r-project.org/bin/windows/Rtools/).
+  WSL instead needs its own Linux R installation and Linux build tools.
+
+The `tskit C` library is included in this repository;
+a separate system installation of `tskit` is not needed to compile the package.
 
 ### Fork and clone `RcppTskit` (with `gh`)
 
@@ -87,6 +108,57 @@ README.md
 README_DEVEL.md
 ```
 
+### R packages, including development dependencies
+
+Start `R` with the version you will use for development and run the following
+to install all dependencies and suggested packages:
+
+```r
+install.packages(c("pak", "devtools"))
+pak::local_install_dev_deps("RcppTskit")
+```
+
+### Quarto: R package and executable
+
+Building the HTML vignette requires **both** the `quarto` R package and the
+[Quarto executable](https://quarto.org/docs/get-started/).
+
+An IDE-bundled executable is sufficient if R can find it.
+A standalone installation makes the executable available outside the IDE too.
+On macOS use:
+
+```sh
+brew install quarto
+quarto --version
+```
+
+Alternatively, use the Quarto installer for your operating system.
+
+### Shell-script checks
+
+On macOS and Linux, install `checkbashisms/devscripts`
+for the full shell-script checks performed by `R CMD check`.
+
+```sh
+# macOS with Homebrew
+brew install checkbashisms
+
+# Debian/Ubuntu alternative
+# sudo apt-get install devscripts
+```
+
+### Python interoperability tests
+
+The `C/C++` interface works without a `Python` `tskit` installation.
+To exercise the `Python` interoperability tests, prepare `Python` and `tskit`
+through `reticulate` in a fresh `R` session, before `Python` has been initialised:
+
+```r
+reticulate::py_require("tskit")
+tskit <- reticulate::import("tskit")
+reticulate::py_config()
+```
+
 ### `pre-commit` and code quality tools
 
 We use [pre-commit](https://pre-commit.com) hooks
@@ -99,29 +171,16 @@ The current hook set includes:
 * [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) to lint `C/C++` code
 
 Install these tools with your preferred package manager before contributing.
-One macOS setup looks like this:
+On macOS, setup looks like this:
 
 ```sh
-# Install pre-commit
-brew install pre-commit
+# Install the command-line tools, including Python for the clang-tidy wrapper
+brew install pre-commit air jarl clang-format llvm python
 
-# Install air
-brew install air
-
-# Install jarl
-# Follow the installation instructions on the jarl project page
-
-# Install clang-format
-brew install clang-format
-
-# Install llvm for clang-tidy
-brew install llvm
-
-# Add llvm tools to PATH
-echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
+# Make LLVM's tools visible in this terminal (Apple Silicon or Intel Homebrew)
+# Change your shell startup file as appropriate
+export PATH="$(brew --prefix llvm)/bin:$HOME/.local/bin:$PATH" >> ~/.zshrc
 ```
-
-Restart your terminal so the updated `PATH` is available.
 
 Then install the hooks:
 
@@ -129,6 +188,36 @@ Then install the hooks:
 pre-commit install --install-hooks
 pre-commit install --hook-type pre-push
 ```
+
+### Verify the setup
+
+From the repository root, verify the R packages, compiler, and vignette engine:
+
+```r
+pkgbuild::check_build_tools(debug = TRUE)
+stopifnot(requireNamespace("curl", quietly = TRUE))
+stopifnot(requireNamespace("quarto", quietly = TRUE))
+stopifnot(!is.null(quarto::quarto_path()))
+tools::vignetteEngine("quarto::html")
+quarto::quarto_version()
+```
+
+In the terminal, check the quality tools and run the hooks:
+
+```sh
+R --version
+python3 --version
+pre-commit --version
+air --version
+jarl --version
+clang-format --version
+clang-tidy --version
+pre-commit run --all-files
+```
+
+Then run the full package checks described below.
+If a command works in the terminal but not in the IDE (or vice versa),
+compare their `PATH`, `R` version, and `R` library paths.
 
 This completes the setup section.
 
@@ -185,8 +274,13 @@ Add or update tests for every behavior change.
 If the change is user-visible,
 also update `RcppTskit/NEWS.md`.
 
-Do not edit autogenerated files (`man` folder and `RcppExports.*`).
-These will be regenerated as part of the `R CMD check`.
+Do not edit autogenerated files (`NAMESPACE`, `man/`, and `RcppExports.*`).
+From the package directory, regenerate them using:
+
+```r
+Rcpp::compileAttributes() # After changing exported C++ functions
+devtools::document()      # After changing roxygen documentation
+```
 
 ### Testing changes
 
@@ -221,7 +315,7 @@ devtools::test(filter = "relevant-tests")
 devtools::test()
 
 # Package checks
-devtools::check(vignette = FALSE) # faster
+devtools::check(vignettes = FALSE) # faster; still needs the build toolchain
 devtools::check()
 
 # Install if you want to try the package interactively
@@ -239,21 +333,22 @@ the equivalent terminal commands are:
 cd path/to/RcppTskit/RcppTskit
 Rscript -e "devtools::test(filter = 'relevant-tests')"
 Rscript -e "devtools::test()"
-Rscript -e "devtools::check(vignette = FALSE)"
+Rscript -e "devtools::check(vignettes = FALSE)"
 Rscript -e "devtools::check()"
 ```
 
 If you prefer to work directly with `R CMD`,
-run these commands from the package directory:
+run these commands from the repository root:
 
 ```sh
 cd path/to/RcppTskit
 R CMD build RcppTskit
-R CMD check RcppTskit_*.tar.gz
+R CMD check --no-manual RcppTskit_*.tar.gz
 R CMD INSTALL RcppTskit_*.tar.gz
 ```
 
-On Windows, replace `tar.gz` with `zip`.
+Omit `--no-manual` only when a working LaTeX installation is available.
+Building/checking source archives with vignettes needs both Quarto components.
 
 ### Contributing your changes
 

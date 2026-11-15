@@ -30,12 +30,12 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
   expect_no_error(rtsk_treeseq_load(ts_file, options = bitwShiftL(1L, 0L)))
   expect_no_error(ts_load(ts_file, skip_tables = TRUE))
   check_empty_tables_xptr <- function(ts) {
-    # jarl-ignore implicit_assignment: it's just a test
+    # jarl-ignore implicit_assignment: for unit testing
     tmp <- capture.output(p <- rtsk_treeseq_print(ts))
     expect_true(all(p$tables$number == 0))
   }
   check_empty_tables <- function(ts) {
-    # jarl-ignore implicit_assignment: it's just a test
+    # jarl-ignore implicit_assignment: for unit testing
     tmp <- capture.output(p <- ts$print())
     expect_true(all(p$tables$number == 0))
   }
@@ -95,12 +95,12 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
   ))
   expect_no_error(tc_load(ts_file, skip_tables = TRUE))
   check_empty_tables_xptr <- function(tc) {
-    # jarl-ignore implicit_assignment: it's just a test
+    # jarl-ignore implicit_assignment: for unit testing
     tmp <- capture.output(p <- rtsk_table_collection_print(tc))
     expect_true(all(p$tables$number == 0))
   }
   check_empty_tables <- function(tc) {
-    # jarl-ignore implicit_assignment: it's just a test
+    # jarl-ignore implicit_assignment: for unit testing
     tmp <- capture.output(p <- tc$print())
     expect_true(all(p$tables$number == 0))
   }
@@ -480,7 +480,7 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
     regexp = "ts must be an object of externalptr class!"
   )
   p_xptr <- rtsk_treeseq_print(ts_xptr)
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(p <- ts$print())
   expect_equal(
     p,
@@ -548,7 +548,7 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
     regexp = "tc must be an object of externalptr class!"
   )
   p_xptr <- rtsk_table_collection_print(tc_xptr)
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(p <- tc$print())
   expect_equal(
     p,
@@ -870,7 +870,7 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
   expect_equal(m_xptr, m)
 
   p_xptr <- rtsk_treeseq_print(ts_xptr)
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(p <- ts$print())
   expect_equal(
     p_xptr,
@@ -970,7 +970,7 @@ test_that("ts/tc_load(), ts/tc_summary*(), and ts/tc_dump(x) work", {
   expect_equal(m_xptr_tc, m_xptr_ts)
 
   p_xptr <- rtsk_table_collection_print(tc_xptr)
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(p <- tc$print())
   expect_equal(
     p_xptr,

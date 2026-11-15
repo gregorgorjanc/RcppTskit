@@ -42,38 +42,38 @@ test_that("public C++ wrappers compile for downstream-style usage", {
   )
 
   ts_file <- system.file("examples/test.trees", package = "RcppTskit")
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   ts_xptr <- RcppTskit:::rtsk_treeseq_load(ts_file)
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   tc_xptr <- RcppTskit:::rtsk_table_collection_load(ts_file)
 
   tc_scalars <- tc_public_scalars(tc_xptr)
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_identical(
     tc_scalars$has_reference_sequence,
     RcppTskit:::rtsk_table_collection_has_reference_sequence(tc_xptr)
   )
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_identical(
     tc_scalars$time_units,
     RcppTskit:::rtsk_table_collection_get_time_units(tc_xptr)
   )
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_identical(
     tc_scalars$file_uuid,
     RcppTskit:::rtsk_table_collection_get_file_uuid(tc_xptr)
   )
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_identical(
     tc_scalars$has_index,
     RcppTskit:::rtsk_table_collection_has_index(tc_xptr)
   )
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_equal(
     ts_public_summary(ts_xptr),
     RcppTskit:::rtsk_treeseq_summary(ts_xptr)
   )
-  # jarl-ignore internal_function:  it's just a test
+  # jarl-ignore undesirable_operator:  for unit testing
   expect_equal(
     tc_public_summary(tc_xptr),
     RcppTskit:::rtsk_table_collection_summary(tc_xptr)

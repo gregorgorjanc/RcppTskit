@@ -9,8 +9,8 @@ recombination graphs (ARGs) using succinct tree sequence encoding.
 The tree sequence encoding of an ARG is
 described in Wong et al. (2024)
 <[doi:10.1093/genetics/iyae100](https://doi.org/10.1093/genetics/iyae100)>,
-while `tskit` project is described in Jeffrey et al. (2026)
-<[doi:10.48550/arXiv.2602.09649](https://doi.org/10.48550/arXiv.2602.09649)>.
+while `tskit` project is described in Jeffery et al. (2026)
+<[doi:10.1038/s41592-026-03325-1](https://doi.org/10.1038/s41592-026-03325-1)>.
 See <https://tskit.dev> for project news, documentation, and tutorials.
 `Tskit` provides `Python`, `C`, and `Rust` application programming interfaces (APIs).
 The `Python` API can be called from `R` via the `reticulate` `R` package to

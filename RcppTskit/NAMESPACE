@@ -13,13 +13,19 @@ export(ts_py_to_r)
 export(ts_read)
 export(tskit_version)
 importFrom(R6,R6Class)
-importFrom(Rcpp,cppFunction)
-importFrom(Rcpp,registerPlugin)
-importFrom(bit64,as.integer64)
-importFrom(bit64,is.integer64)
+importFrom(Rcpp,
+  cppFunction,
+  registerPlugin
+)
+importFrom(bit64,
+  as.integer64,
+  is.integer64
+)
 importFrom(methods,is)
-importFrom(reticulate,import)
-importFrom(reticulate,is_py_object)
-importFrom(reticulate,py_module_available)
-importFrom(reticulate,py_require)
+importFrom(reticulate,
+  import,
+  is_py_object,
+  py_module_available,
+  py_require
+)
 useDynLib(RcppTskit, .registration = TRUE)

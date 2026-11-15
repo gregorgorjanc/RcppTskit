@@ -155,7 +155,7 @@ test_that("TableCollection and TreeSequence round-trip works", {
 
   tc <- ts$dump_tables()
   expect_true(is(tc, "TableCollection"))
-  # jarl-ignore implicit_assignment:  it's just a test
+  # jarl-ignore implicit_assignment:  for unit testing
   tmp <- capture.output(p <- tc$print())
   expect_equal(
     p,
@@ -212,9 +212,9 @@ test_that("TableCollection and TreeSequence round-trip works", {
 
   ts2 <- tc$tree_sequence()
   expect_true(is(ts2, "TreeSequence"))
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(ts_print <- ts$print())
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(ts2_print <- ts2$print())
   i_file_uuid <- ts_print$ts$property == "file_uuid"
   ts_print$ts$value[i_file_uuid] <- NA_character_

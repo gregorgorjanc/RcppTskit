@@ -142,9 +142,9 @@ test_that("ts_r_to_py() and ts_py_to_r() work", {
   expect_equal(length(ts2_py$tables$mutations$metadata), m2$mutations)
 
   expect_true(is(ts2_r, "TreeSequence"))
-  # jarl-ignore implicit_assignment:  it's just a test
+  # jarl-ignore implicit_assignment:  for unit testing
   tmp <- capture.output(ts2_r_print <- ts2_r$print())
-  # jarl-ignore implicit_assignment:  it's just a test
+  # jarl-ignore implicit_assignment:  for unit testing
   tmp <- capture.output(ts_xptr2_r_print <- rtsk_treeseq_print(ts_xptr2_r))
   sel <- ts2_r_print$ts$property == "file_uuid"
   ts2_r_print$ts$value[sel] <- NA_character_
@@ -270,9 +270,9 @@ test_that("tc_r_to_py() and tc_py_to_r() work", {
   expect_equal(length(tc2_py$mutations$metadata), m2$mutations)
 
   expect_true(is(tc2_r, "TableCollection"))
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(tc2_r_print <- tc2_r$print())
-  # jarl-ignore implicit_assignment: it's just a test
+  # jarl-ignore implicit_assignment: for unit testing
   tmp <- capture.output(tc_xptr2_r <- rtsk_table_collection_print(tc_xptr2_r))
   sel <- tc2_r_print$tc$property == "file_uuid"
   tc2_r_print$tc$value[sel] <- NA_character_
