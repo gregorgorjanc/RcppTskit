@@ -2,12 +2,12 @@
 % Please edit documentation in R/RcppTskit.R
 \name{ts_py_to_r}
 \alias{ts_py_to_r}
-\title{Transfer a tree sequence from reticulate Python to R}
+\title{Transfer a tree sequence from \code{reticulate} Python to R}
 \usage{
 ts_py_to_r(ts, cleanup = TRUE)
 }
 \arguments{
-\item{ts}{tree sequence in reticulate Python.}
+\item{ts}{tree sequence in \code{reticulate} Python.}
 
 \item{cleanup}{logical; delete the temporary file at the end of the function?}
 }
@@ -15,14 +15,13 @@ ts_py_to_r(ts, cleanup = TRUE)
 A \code{\link{TreeSequence}} object.
 }
 \description{
-This function saves a tree sequence from reticulate Python to
+This function saves a tree sequence from \code{reticulate} Python to
   temporary file on disk and reads it into R for use with \code{RcppTskit}.
 }
 \details{
 Because this transfer is via a temporary file,
   the file UUID property changes.
   This function requires the optional \code{reticulate} R package.
-  See \code{\link{get_tskit_py}} for installation and Python setup.
 }
 \examples{
 \dontrun{

@@ -21,7 +21,7 @@ Windows users can use native R with Rtools or a separate Linux setup in WSL.
 Set up the system tools once per computer and R dependencies for each R library.
 Repeat the R dependency step after upgrading R or moving to a new laptop.
 Install Git hooks once per clone.
-Everything before `RcppTskit changes, checks, and contributing` is setup.
+Everything before [changes, checks, and contributing](#rcpptskit-changes-checks-and-contributing) is setup.
 
 ### R and build tools
 
@@ -41,7 +41,7 @@ Essentially:
 * On Windows, install the [Rtools version matching your R release](https://cran.r-project.org/bin/windows/Rtools/).
   WSL instead needs its own Linux R installation and Linux build tools.
 
-The `tskit C` library is included in this repository;
+The `tskit` C library is included in this repository;
 a separate system installation of `tskit` is not needed to compile the package.
 
 ### Fork and clone `RcppTskit` (with `gh`)
@@ -69,7 +69,7 @@ ls -1
 
 If you prefer not to use `gh`,
 open <https://github.com/HighlanderLab/RcppTskit.git> in your browser,
-fork the repository with the `Fork` button,
+fork the repository with the **Fork** button,
 and then clone the repository:
 
 ```sh
@@ -112,7 +112,7 @@ README_DEVEL.md
 
 ### R packages, including development dependencies
 
-Start `R` with the version you will use for development and run the following
+Start R with the version you will use for development and run the following
 to install all dependencies and suggested packages:
 
 ```r
@@ -166,10 +166,10 @@ We use [pre-commit](https://pre-commit.com) hooks
 to run formatting and linting checks before commits and pushes.
 The current hook set includes:
 
-* [air](https://github.com/posit-dev/air) to format `R` code
-* [jarl](https://github.com/etiennebacher/jarl) to lint `R` code
-* [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format `C/C++` code
-* [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) to lint `C/C++` code
+* [air](https://github.com/posit-dev/air) to format R code
+* [jarl](https://github.com/etiennebacher/jarl) to lint R code
+* [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format C/C++ code
+* [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) to lint C/C++ code
 
 Install these tools with your preferred package manager before contributing.
 On macOS, setup looks like this:
@@ -218,7 +218,7 @@ pre-commit run --all-files
 
 Then run the full package checks described below.
 If a command works in the terminal but not in the IDE (or vice versa),
-compare their `PATH`, `R` version, and `R` library paths.
+compare their `PATH`, R version, and R library paths.
 
 This completes the setup section.
 
@@ -300,7 +300,7 @@ All of these are described below.
 
 Run checks routinely while you work.
 
-In `R`, we recommend:
+In R, we recommend:
 
 ```r
 # The git repository contains the R package in the RcppTskit/ sub-directory.
@@ -491,9 +491,9 @@ git push --force-with-lease origin bugfix-123
 Replace `n` with the number of commits you want to squash.
 You can count them from the pull request commit list.
 
-This completes the `RcppTskit` changes, checks, and contributing section.
+This completes the [changes, checks, and contributing](#rcpptskit-changes-checks-and-contributing) section.
 
-## `tskit C` update
+## `tskit` C update
 
 If you plan to update the vendored `tskit` C library,
 follow the instructions in `extern/README.md` and
@@ -503,8 +503,8 @@ Any changes to that code should go to `tskit` upstream.
 ## More advanced and thorough testing
 
 The repository pins a low-noise `.clang-tidy` profile.
-For occasional broader `C/C++` audits,
+For occasional broader C/C++ audits,
 use `--config-file=RcppTskit/tools/clang_tidy_audit.yaml`
 with `clang-tidy` or `RcppTskit/tools/clang_tidy.py`.
 See `RcppTskit/notes_pkg_dev.Rmd` for a set of unpolished notes.
-The notes also include suggestions on debugging `C/C++` code.
+The notes also include suggestions on debugging C/C++ code.

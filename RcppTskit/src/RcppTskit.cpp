@@ -190,10 +190,10 @@ static_assert(std::numeric_limits<tsk_id_t>::is_signed &&
 //   \describe{
 //   \item{\code{ts_xptr}}{External-pointer wrapper providing access to the
 //     underlying \code{tsk_treeseq_t} used for variant decoding.}
-//   \item{\code{ts_sexp}}{Preserved \code{R} external-pointer object that
+//   \item{\code{ts_sexp}}{Preserved R external-pointer object that
 //     keeps the tree sequence alive while the iterator exists. It remains
 //     \code{R_NilValue} until it is preserved.}
-//   \item{\code{variant}}{Reusable \code{tskit C} variant decoder populated
+//   \item{\code{variant}}{Reusable \code{tskit} C variant decoder populated
 //     for successive sites by \code{tsk_variant_decode()}.}
 //   \item{\code{variant_initialized}}{Whether \code{tsk_variant_init()}
 //     completed successfully and \code{variant} must be released by
@@ -203,7 +203,7 @@ static_assert(std::numeric_limits<tsk_id_t>::is_signed &&
 //     to decode.}
 //   }
 // @details This is an \code{RcppTskit}-owned iterator state with no direct
-//   equivalent in the \code{tskit C} API. It combines a
+//   equivalent in the \code{tskit} C API. It combines a
 //   \code{tsk_variant_t} decoder with the half-open range of site IDs used by
 //   \code{rtsk_treeseq_next_variant()}.
 //
@@ -213,7 +213,7 @@ static_assert(std::numeric_limits<tsk_id_t>::is_signed &&
 //   See \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_variant_t}.
 //
 //   A \code{tsk_variant_t} stores an unowned reference to its tree sequence,
-//   so this state keeps the originating \code{R} tree-sequence external pointer
+//   so this state keeps the originating R tree-sequence external pointer
 //   alive for the complete lifetime of the iterator.
 //
 //   The remaining site-ID range is represented as
@@ -249,7 +249,7 @@ bool g_test_force_null_first_allele = false;
 
 // INTERNAL
 // @title Convert \code{Rcpp::Nullable} vector to empty-or-value vector
-// @param value nullable vector from \code{R}
+// @param value nullable vector from R
 // @return Empty vector if \code{NULL}, otherwise converted vector.
 template <typename VectorT>
 VectorT nullable_to_vector_or_empty(const Rcpp::Nullable<VectorT> &value) {
@@ -331,7 +331,7 @@ compute_variant_iteration_bounds(rtsk_treeseq_t &ts_xptr, double left,
 //   a signed 32 bit integer with range from -2^31 to 2^31 - 1
 //   (that is, -2,147,483,648 to 2,147,483,647).
 //   \code{Rcpp} maps a \code{C++ int} to an \code{R integer}.
-//   In \code{R}, the lowest signed 32 bit value is reserved for
+//   In R, the lowest signed 32 bit value is reserved for
 //   \code{NA_integer_} (try running \code{as.integer(-2^31)}). Flags are
 //   nonnegative, so \code{RcppTskit} represents values from 0 to 2^31 - 1 as
 //   \code{C++ int} values and hence as \code{R integers}.
@@ -582,7 +582,7 @@ SEXP test_rtsk_wrap_tsk_size_t_as_integer64(const std::string &value,
 }
 
 // PUBLIC
-//' @title Report the version of installed kastore C API
+//' @title Report the version of installed \code{kastore} C API
 //' @details The version is stored in the installed header \code{kastore.h}.
 //' @return A named vector with three elements \code{major}, \code{minor}, and
 //'   \code{patch}.
@@ -615,7 +615,7 @@ Rcpp::IntegerVector tskit_version() {
 // PUBLIC, wrapper for tsk_treeseq_load
 // @title Load a tree sequence from a file
 // @param filename a string specifying the full path of the tree sequence file.
-// @param options passed to \code{tskit C} (see details and note that only
+// @param options passed to \code{tskit} C (see details and note that only
 //   \code{TSK_LOAD_SKIP_TABLES} and \code{TSK_LOAD_SKIP_REFERENCE_SEQUENCE},
 //   but not \code{TSK_NO_INIT}, are supported by this wrapper).
 // @details This function calls
@@ -654,7 +654,7 @@ SEXP rtsk_treeseq_load(const std::string &filename, int options = 0) {
 // PUBLIC, wrapper for tsk_table_collection_load
 // @title Load a table collection from a file
 // @param filename a string specifying the full path of the tree sequence file.
-// @param options passed to \code{tskit C} (see details and note that only
+// @param options passed to \code{tskit} C (see details and note that only
 //   \code{TSK_LOAD_SKIP_TABLES} and \code{TSK_LOAD_SKIP_REFERENCE_SEQUENCE},
 //   but not \code{TSK_NO_INIT}, are supported by this wrapper).
 // @details This function calls
@@ -694,7 +694,7 @@ SEXP rtsk_table_collection_load(const std::string &filename, int options = 0) {
 // @param ts an external pointer to tree sequence as a \code{tsk_treeseq_t}
 //   object.
 // @param filename a string specifying the full path of the tree sequence file.
-// @param options passed to \code{tskit C} (see details and note that
+// @param options passed to \code{tskit} C (see details and note that
 //   these options are currently unused in \code{tskit} and should be \code{0}).
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_treeseq_dump}.
@@ -720,7 +720,7 @@ void rtsk_treeseq_dump(SEXP ts, const std::string &filename, int options = 0) {
 // @param tc an external pointer to table collection as a
 //   \code{tsk_table_collection_t} object.
 // @param filename a string specifying the full path of the tree sequence file.
-// @param options passed to \code{tskit C} (see details and note that
+// @param options passed to \code{tskit} C (see details and note that
 //   these options are currently unused in \code{tskit} and should be \code{0}).
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_table_collection_dump}.
@@ -747,7 +747,7 @@ void rtsk_table_collection_dump(SEXP tc, const std::string &filename,
 // @title Copy a tree sequence's tables into a table collection
 // @param ts an external pointer to tree sequence as a \code{tsk_treeseq_t}
 //   object.
-// @param options passed to \code{tskit C} (see details and note that
+// @param options passed to \code{tskit} C (see details and note that
 //   this wrapper does not support \code{TSK_NO_INIT}, but supports
 //   \code{TSK_COPY_FILE_UUID}).
 // @details This function calls
@@ -788,7 +788,7 @@ SEXP rtsk_treeseq_copy_tables(SEXP ts, int options = 0) {
 // @title Initialise a tree sequence from a table collection
 // @param tc an external pointer to table collection as a
 //   \code{tsk_table_collection_t} object.
-// @param options passed to \code{tskit C} (see details and note that
+// @param options passed to \code{tskit} C (see details and note that
 //   this wrapper supports
 //   \code{TSK_TS_INIT_BUILD_INDEXES} and
 //   \code{TSK_TS_INIT_COMPUTE_MUTATION_PARENTS}, but not
@@ -924,9 +924,9 @@ SEXP rtsk_treeseq_get_num_samples(SEXP ts) {
 //   object.
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_treeseq_get_samples}.
-// @return An \code{R}-owned integer vector containing an independent copy of
+// @return An R-owned integer vector containing an independent copy of
 //   the sample node IDs (0-based), listed in numerical order. The underlying
-//   \code{C} array remains owned by the tree sequence.
+//   C array remains owned by the tree sequence.
 // @examples
 // ts_file <- system.file("examples/test.trees", package = "RcppTskit")
 // ts_xptr <- RcppTskit:::rtsk_treeseq_load(ts_file)
@@ -948,7 +948,7 @@ Rcpp::IntegerVector rtsk_treeseq_get_samples(SEXP ts) {
 // @title Get sample node data needed to filter tree-sequence samples
 // @param ts an external pointer to a tree sequence as a
 //   \code{tsk_treeseq_t} object.
-// @return A named list of aligned, \code{R}-owned vectors: integer sample node
+// @return A named list of aligned, R-owned vectors: integer sample node
 //   IDs, integer population IDs, and numeric node times.
 // @examples
 // ts_file <- system.file("examples/test.trees", package = "RcppTskit")
@@ -1045,8 +1045,8 @@ bool rtsk_treeseq_get_discrete_genome(SEXP ts) {
 // genome
 //   sequence
 // @details Note that \code{tsk_treeseq_has_reference_sequence} is undocumented
-//   method in the \code{tskit C} API (see \code{trees.h}), but documented in
-//   \code{tskit Python} API
+//   method in the \code{tskit} C API (see \code{trees.h}), but documented in
+//   \code{tskit} Python API
 //   https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.has_reference_sequence
 // [[Rcpp::export]]
 bool rtsk_treeseq_has_reference_sequence(SEXP ts) {
@@ -1451,7 +1451,7 @@ bool rtsk_table_collection_has_index(SEXP tc, int options = 0) {
 // @title Build indexes for a table collection
 // @param tc an external pointer to table collection as a
 //   \code{tsk_table_collection_t} object.
-// @param options passed to \code{tskit C}, currently unused and should be
+// @param options passed to \code{tskit} C, currently unused and should be
 //   set to \code{0}.
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_table_collection_build_index}.
@@ -1479,7 +1479,7 @@ void rtsk_table_collection_build_index(SEXP tc, int options = 0) {
 // @title Drop indexes for a table collection
 // @param tc an external pointer to table collection as a
 //   \code{tsk_table_collection_t} object.
-// @param options passed to \code{tskit C}, currently unused and should be
+// @param options passed to \code{tskit} C, currently unused and should be
 //   set to \code{0}.
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_table_collection_drop_index}.
@@ -1512,7 +1512,7 @@ void rtsk_table_collection_drop_index(SEXP tc, int options = 0) {
 // @param start_edges integer scalar edge-table start row index (0-based).
 // @param start_sites integer scalar site-table start row index (0-based).
 // @param start_mutations mutation-table start row index (0-based).
-// @param options passed to \code{tskit C}; this wrapper supports
+// @param options passed to \code{tskit} C; this wrapper supports
 //   \code{TSK_NO_CHECK_INTEGRITY}.
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_table_collection_sort},
@@ -1556,7 +1556,7 @@ void rtsk_table_collection_sort(SEXP tc, int start_edges = 0,
 //   \code{tsk_table_collection_t} object.
 // @param samples either \code{NULL} or integer vector of node IDs to retain as
 //   samples.
-// @param options simplify options passed to \code{tskit C}.
+// @param options simplify options passed to \code{tskit} C.
 // @details This function calls
 //   \url{https://tskit.dev/tskit/docs/stable/c-api.html#c.tsk_table_collection_simplify}.
 // @return Integer vector mapping input node IDs to output node IDs; dropped
@@ -1610,7 +1610,7 @@ Rcpp::IntegerVector rtsk_table_collection_simplify(
 // @title Summary of properties and number of records in a table collection
 // @param tc an external pointer to table collection as a
 //   \code{tsk_table_collection_t} object.
-// @param options passed to \code{tskit C}, currently unused and should be
+// @param options passed to \code{tskit} C, currently unused and should be
 //   set to \code{0}.
 // @details These functions return the summary of properties and number of
 //   records in a table collection, by accessing its elements and/or calling

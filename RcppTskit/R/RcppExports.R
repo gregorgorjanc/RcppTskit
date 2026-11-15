@@ -33,7 +33,7 @@ test_rtsk_wrap_tsk_size_t_as_integer64 <- function(value, force_range_error = FA
     .Call(`_RcppTskit_test_rtsk_wrap_tsk_size_t_as_integer64`, value, force_range_error)
 }
 
-#' @title Report the version of installed kastore C API
+#' @title Report the version of installed \code{kastore} C API
 #' @details The version is stored in the installed header \code{kastore.h}.
 #' @return A named vector with three elements \code{major}, \code{minor}, and
 #'   \code{patch}.

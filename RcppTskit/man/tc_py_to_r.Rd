@@ -2,12 +2,12 @@
 % Please edit documentation in R/RcppTskit.R
 \name{tc_py_to_r}
 \alias{tc_py_to_r}
-\title{Transfer a table collection from reticulate Python to R}
+\title{Transfer a table collection from \code{reticulate} Python to R}
 \usage{
 tc_py_to_r(tc, cleanup = TRUE)
 }
 \arguments{
-\item{tc}{table collection in reticulate Python.}
+\item{tc}{table collection in \code{reticulate} Python.}
 
 \item{cleanup}{logical; delete the temporary file at the end of the function?}
 }
@@ -15,14 +15,13 @@ tc_py_to_r(tc, cleanup = TRUE)
 A \code{\link{TableCollection}} object.
 }
 \description{
-This function saves a table collection from reticulate Python
+This function saves a table collection from \code{reticulate} Python
   to temporary file on disk and reads it into R for use with \code{RcppTskit}.
 }
 \details{
 Because this transfer is via a temporary file,
   the file UUID property changes.
   This function requires the optional \code{reticulate} R package.
-  See \code{\link{get_tskit_py}} for installation and Python setup.
 }
 \examples{
 \dontrun{

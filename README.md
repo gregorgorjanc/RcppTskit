@@ -1,8 +1,8 @@
-# `RcppTskit`: `R` access to the `tskit C` API <img src="RcppTskit/man/figures/logo.png" align="right" height="139" alt="RcppTskit logo" />
+# `RcppTskit`: R access to the `tskit` C API <img src="RcppTskit/man/figures/logo.png" align="right" height="139" alt="RcppTskit logo" />
 
 ## Overview
 
-<!-- keep in sync with DESCRIPTION file but use `` and Markdown URLs for DOIs -->
+<!-- keep in sync with DESCRIPTION file, but use ``, Markdown URLs for DOIs, and don't quote languages -->
 
 `Tskit` enables performant storage, manipulation, and analysis of ancestral
 recombination graphs (ARGs) using succinct tree sequence encoding.
@@ -12,23 +12,23 @@ described in Wong et al. (2024)
 while `tskit` project is described in Jeffery et al. (2026)
 <[doi:10.1038/s41592-026-03325-1](https://doi.org/10.1038/s41592-026-03325-1)>.
 See <https://tskit.dev> for project news, documentation, and tutorials.
-`Tskit` provides `Python`, `C`, and `Rust` application programming interfaces (APIs).
-The `Python` API can be called from `R` via the `reticulate` `R` package to
+`Tskit` provides Python, C, and Rust application programming interfaces (APIs).
+The Python API can be called from R via the `reticulate` R package to
 seamlessly load and analyse a tree sequence, as described at
 <https://tskit.dev/tutorials/RcppTskit.html>.
-`RcppTskit` provides `R` access to the `tskit C` API for use cases where the
+`RcppTskit` provides R access to the `tskit` C API for use cases where the
 `reticulate` option is not optimal.
 For example, for high-performance and low-level work with tree sequences.
 Currently, `RcppTskit` provides a limited number of functions
-due to the availability of extensive `Python` API and the `reticulate` option.
-The `RcppTskit R` API combines an `R6` object model inspired by the
-`tskit Python` API with operations that map directly to the `tskit C` API.
-The `RcppTskit C++` API closely mirrors the `tskit C` API.
+due to the availability of extensive Python API and the `reticulate` option.
+The `RcppTskit` R API combines an `R6` object model inspired by the
+`tskit` Python API with operations that map directly to the `tskit` C API.
+The `RcppTskit` C++ API closely mirrors the `tskit` C API.
 
 See more details on the state of the tree sequence ecosystem and aims of
 `RcppTskit` in [the introduction vignette](https://highlanderlab.r-universe.dev/articles/RcppTskit/RcppTskit_intro.html) ([source](RcppTskit/vignettes/RcppTskit_intro.qmd)).
 The vignette also shows examples on how to use `RcppTskit` on its own or
-to develop new `R` packages that can leverage `RcppTskit`.
+to develop new R packages that can leverage `RcppTskit`.
 
 ## Status
 
@@ -57,10 +57,10 @@ Code quality: [![Codecov test coverage](https://codecov.io/gh/HighlanderLab/Rcpp
 
 ## Repository structure
 
-* `RcppTskit` - The `R` package.
+* `RcppTskit` - The R package.
 
 * `extern` - Git submodule for `tskit` and instructions on
-    obtaining the latest version and copying the `tskit C` code into
+    obtaining the latest version and copying the `tskit` C code into
     `RcppTskit` directory.
     `extern` is saved outside of the `RcppTskit` directory
     because `R CMD CHECK` complains otherwise (even with `.Rbuildignore`).
@@ -105,7 +105,7 @@ vignette("RcppTskit_intro")
 
 To install the latest development version (possibly unstable!) from Github
 use the following code.
-Note that you will have to compile the `C/C++` code and vignette,
+Note that you will have to compile the C/C++ code and vignette,
 so you will require the complete build toolchain
 as described in [README_DEVEL.md](README_DEVEL.md).
 

@@ -1,7 +1,7 @@
 # `README` for `extern/tskit`
 
 This directory holds git submodule for `tskit` and instructions on copying its
-`C` code into `RcppTskit` package.
+C code into `RcppTskit` package.
 
 All commands are run from the root of the `RcppTskit` repository:
 
@@ -99,6 +99,7 @@ cp extern/tskit/c/tskit/stats.c RcppTskit/src/tskit/.
 cp extern/tskit/c/tskit/tables.c RcppTskit/src/tskit/.
 cp extern/tskit/c/tskit/trees.c RcppTskit/src/tskit/.
 cp extern/tskit/c/subprojects/kastore/kastore.c RcppTskit/src/tskit/.
+```
 
 Check differences between old copy and new version:
 
@@ -129,6 +130,7 @@ diff extern/tskit/c/tskit/stats.c RcppTskit/src/tskit/stats.c
 diff extern/tskit/c/tskit/tables.c RcppTskit/src/tskit/tables.c
 diff extern/tskit/c/tskit/trees.c RcppTskit/src/tskit/trees.c
 diff extern/tskit/c/subprojects/kastore/kastore.c RcppTskit/src/tskit/kastore.c
+```
 
 Update the files in R package:
 
@@ -159,6 +161,7 @@ cp -i extern/tskit/c/tskit/stats.c RcppTskit/src/tskit/.
 cp -i extern/tskit/c/tskit/tables.c RcppTskit/src/tskit/.
 cp -i extern/tskit/c/tskit/trees.c RcppTskit/src/tskit/.
 cp -i extern/tskit/c/subprojects/kastore/kastore.c RcppTskit/src/tskit/.
+```
 
 Commit changes:
 

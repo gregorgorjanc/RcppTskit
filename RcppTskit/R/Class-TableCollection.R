@@ -1,9 +1,9 @@
 #' @title Table collection R6 class (TableCollection)
 #' @description An \code{R6} class holding an external pointer to
 #' a table collection object. As an \code{R6} class, method-calling looks Pythonic
-#' and hence resembles the \code{tskit Python} API. Since the class only
+#' and hence resembles the \code{tskit} Python API. Since the class only
 #' holds the pointer, it is lightweight. Currently there is a limited set of
-#' \code{R} methods for working with the table collection object.
+#' R methods for working with the table collection object.
 #' @export
 TableCollection <- R6Class(
   classname = "TableCollection",
@@ -17,7 +17,7 @@ TableCollection <- R6Class(
     #' @param skip_reference_sequence logical; if \code{TRUE}, skip loading
     #'   reference genome sequence information.
     #' @param xptr an external pointer (\code{externalptr}) to a table collection.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.load}.
     #' @return A \code{\link{TableCollection}} object.
     #' @examples
@@ -64,7 +64,7 @@ TableCollection <- R6Class(
 
     #' @description Write a table collection to a file.
     #' @param file a string specifying the full path of the tree sequence file.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.dump}.
     #' @return No return value; called for side effects.
     #' @examples
@@ -85,7 +85,7 @@ TableCollection <- R6Class(
     },
 
     #' @description Create a \code{\link{TreeSequence}} from this table collection.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.tree_sequence}.
     #' @return A \code{\link{TreeSequence}} object.
     #' @examples
@@ -108,7 +108,7 @@ TableCollection <- R6Class(
     #'   start row index (0-based).
     #' @param mutation_start integer or integer-valued numeric scalar
     #'   mutation-table start row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.sort}.
     #' @return No return value; called for side effects.
     #' @examples
@@ -161,7 +161,7 @@ TableCollection <- R6Class(
     #'   the roots in the input tables rather than stopping at samples' MRCAs.
     #' @param record_provenance logical; if \code{TRUE}, append a
     #'   provenance row describing this simplify call.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.simplify}.
     #' @return Integer vector mapping input node IDs to simplified node IDs.
     #'   Removed nodes map to \code{-1}.
@@ -330,7 +330,7 @@ TableCollection <- R6Class(
     #' @param timestamp optional character string timestamp for the new
     #'   provenance. If provided, it should be in ISO8601 form. If
     #'   \code{NULL}, a current UTC timestamp in ISO8601 form is generated.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.ProvenanceTable.add_row}.
     #' @return An integer row index and hence ID (0-based) of the newly added provenance.
     #' @examples
@@ -358,7 +358,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the provenance table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.ProvenanceTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -391,7 +391,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new population; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.PopulationTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added population.
@@ -410,7 +410,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the population table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.PopulationTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -450,7 +450,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new migration; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MigrationTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added migration.
@@ -502,7 +502,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the migration table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MigrationTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -544,7 +544,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new individual; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.IndividualTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added individual.
@@ -579,7 +579,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the individual table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.IndividualTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -620,7 +620,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new node; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.NodeTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added node.
@@ -665,7 +665,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the node table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details In \code{tskit Python}, rows are accessed by indexing a
+    #' @details In \code{tskit} Python, rows are accessed by indexing a
     #'   \code{NodeTable}, for example \code{tables.nodes[index]}; see
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.NodeTable}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
@@ -706,7 +706,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new edge; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.EdgeTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added edge.
@@ -745,7 +745,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the edge table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.EdgeTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -778,7 +778,7 @@ TableCollection <- R6Class(
     #' @param metadata for the new site; accepts \code{NULL},
     #'   a raw vector, or a character vector of length 1. Values are stored as
     #'   raw bytes without metadata-schema validation or encoding.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.SiteTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added site.
@@ -807,7 +807,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the site table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.SiteTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -847,7 +847,7 @@ TableCollection <- R6Class(
     #'   raw bytes without metadata-schema validation or encoding.
     #' @param time numeric scalar mutation time. Use \code{NULL} (the default)
     #'   or \code{NaN} if unknown; both store \code{TSK_UNKNOWN_TIME}.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MutationTable.add_row}.
     #'   Metadata schemas are not currently applied.
     #' @return An integer row index and hence ID (0-based) of the newly added mutation.
@@ -895,7 +895,7 @@ TableCollection <- R6Class(
 
     #' @description Get one row from the mutation table.
     #' @param index integer or numeric scalar row index (0-based).
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MutationTable.__getitem__}.
     #'   The function accepts numeric \code{index} for ease of use, but converts
     #'   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -952,7 +952,7 @@ TableCollection <- R6Class(
     },
 
     #' @description Build edge indexes for this table collection.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.build_index}.
     #' @return No return value; called for side effects.
     #' @examples
@@ -968,7 +968,7 @@ TableCollection <- R6Class(
     },
 
     #' @description Drop edge indexes for this table collection.
-    #' @details See the \code{tskit Python} equivalent at
+    #' @details See the \code{tskit} Python equivalent at
     #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.drop_index}.
     #' @return No return value; called for side effects.
     #' @examples
@@ -1006,17 +1006,17 @@ TableCollection <- R6Class(
       rtsk_table_collection_get_file_uuid(self$xptr)
     },
 
-    #' @description This function saves a table collection from \code{R} to disk
-    #'   and loads it into reticulate \code{Python} for use with the
-    #'   \code{tskit Python} API.
-    #' @param tskit_module reticulate \code{Python} module of \code{tskit}.
+    #' @description This function saves a table collection from R to disk
+    #'   and loads it into \code{reticulate} Python for use with the
+    #'   \code{tskit} Python API.
+    #' @param tskit_module \code{reticulate} Python module of \code{tskit}.
     #'   By default, it calls \code{\link{get_tskit_py}} to obtain the module.
     #' @param cleanup logical; delete the temporary file at the end of the function?
     #' @details This method requires the optional \code{reticulate} R package.
     #'   See \code{\link{get_tskit_py}} for installation and Python setup.
     #'   See \url{https://tskit.dev/tutorials/tables_and_editing.html#tables-and-editing}
     #'   on what you can do with the tables.
-    #' @return \code{TableCollection} object in reticulate \code{Python}.
+    #' @return \code{TableCollection} object in \code{reticulate} Python.
     #' @seealso \code{\link{tc_py_to_r}}, \code{\link{tc_load}}, and
     #'   \code{\link[=TableCollection]{TableCollection$dump}}.
     #' @examples

@@ -6,9 +6,9 @@
 \description{
 An \code{R6} class holding an external pointer to
 a table collection object. As an \code{R6} class, method-calling looks Pythonic
-and hence resembles the \code{tskit Python} API. Since the class only
+and hence resembles the \code{tskit} Python API. Since the class only
 holds the pointer, it is lightweight. Currently there is a limited set of
-\code{R} methods for working with the table collection object.
+R methods for working with the table collection object.
 }
 \examples{
 
@@ -479,7 +479,7 @@ reference genome sequence information.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.load}.
   }
   \subsection{Returns}{
@@ -514,7 +514,7 @@ tc
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.dump}.
   }
   \subsection{Returns}{
@@ -562,7 +562,7 @@ tc$write(dump_file) # alias
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.tree_sequence}.
   }
   \subsection{Returns}{
@@ -602,7 +602,7 @@ mutation-table start row index (0-based).}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.sort}.
   }
   \subsection{Returns}{
@@ -679,7 +679,7 @@ provenance row describing this simplify call.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.simplify}.
   }
   \subsection{Returns}{
@@ -742,7 +742,7 @@ provenance. If provided, it should be in ISO8601 form. If
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.ProvenanceTable.add_row}.
   }
   \subsection{Returns}{
@@ -780,7 +780,7 @@ tc$provenance_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.ProvenanceTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -846,7 +846,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.PopulationTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -882,7 +882,7 @@ tc$population_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.PopulationTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -963,7 +963,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MigrationTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1009,7 +1009,7 @@ tc$migration_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MigrationTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -1089,7 +1089,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.IndividualTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1130,7 +1130,7 @@ tc$individual_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.IndividualTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -1209,7 +1209,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.NodeTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1247,7 +1247,7 @@ tc$node_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    In \code{tskit Python}, rows are accessed by indexing a
+    In \code{tskit} Python, rows are accessed by indexing a
   \code{NodeTable}, for example \code{tables.nodes[index]}; see
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.NodeTable}.
   The function accepts numeric \code{index} for ease of use, but converts
@@ -1321,7 +1321,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.EdgeTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1360,7 +1360,7 @@ tc$edge_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.EdgeTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -1426,7 +1426,7 @@ raw bytes without metadata-schema validation or encoding.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.SiteTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1464,7 +1464,7 @@ tc$site_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.SiteTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -1543,7 +1543,7 @@ or \code{NaN} if unknown; both store \code{TSK_UNKNOWN_TIME}.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MutationTable.add_row}.
   Metadata schemas are not currently applied.
   }
@@ -1581,7 +1581,7 @@ tc$mutation_table_get_row(new_id)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.MutationTable.__getitem__}.
   The function accepts numeric \code{index} for ease of use, but converts
   it to integer after checking that conversion to 32-bit integer succeeds.
@@ -1682,7 +1682,7 @@ tc$has_index()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.build_index}.
   }
   \subsection{Returns}{
@@ -1713,7 +1713,7 @@ tc$has_index()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TableCollection.drop_index}.
   }
   \subsection{Returns}{
@@ -1786,9 +1786,9 @@ tc$file_uuid()
 \if{html}{\out{<a id="method-TableCollection-r_to_py"></a>}}
 \if{latex}{\out{\hypertarget{method-TableCollection-r_to_py}{}}}
 \subsection{\code{TableCollection$r_to_py()}}{
-  This function saves a table collection from \code{R} to disk
-  and loads it into reticulate \code{Python} for use with the
-  \code{tskit Python} API.
+  This function saves a table collection from R to disk
+  and loads it into \code{reticulate} Python for use with the
+  \code{tskit} Python API.
   \subsection{Usage}{
     \if{html}{\out{<div class="r">}}
     \preformatted{TableCollection$r_to_py(tskit_module = get_tskit_py(), cleanup = TRUE)}
@@ -1797,7 +1797,7 @@ tc$file_uuid()
   \subsection{Arguments}{
     \if{html}{\out{<div class="arguments">}}
     \describe{
-      \item{\code{tskit_module}}{reticulate \code{Python} module of \code{tskit}.
+      \item{\code{tskit_module}}{\code{reticulate} Python module of \code{tskit}.
 By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
       \item{\code{cleanup}}{logical; delete the temporary file at the end of the function?}
     }
@@ -1810,7 +1810,7 @@ By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
   on what you can do with the tables.
   }
   \subsection{Returns}{
-    \code{TableCollection} object in reticulate \code{Python}.
+    \code{TableCollection} object in \code{reticulate} Python.
   }
   \subsection{Examples}{
     \if{html}{\out{<div class="r example copy">}}

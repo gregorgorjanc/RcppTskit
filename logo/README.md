@@ -1,4 +1,4 @@
-# RcppTskit logo
+# `RcppTskit` logo
 
 ## Sources
 
@@ -31,7 +31,7 @@ Its SHA-256 checksum is:
 Zilla Slab is distributed under the SIL Open Font License 1.1; see the
 [license in Google Fonts](https://github.com/google/fonts/blob/62f61985b394df2acc8d286c45ad3bf8491698ae/ofl/zillaslab/OFL.txt).
 
-The `skit` lettering is retained as vector artwork from the tskit wordmark.
+The `skit` lettering is retained as vector artwork from the `tskit` wordmark.
 It is intentionally not replaced with Zilla Slab: the capital `T` is aligned
 optically to the visible top and bottom of the vector `k`.
 
@@ -61,7 +61,7 @@ make -C logo
 
 The Makefile runs `logo/logo.R`, which uses `variants/g7.svg` to populate:
 
-- `logo/logo.svg`: canonical hexSticker composition, with the artwork embedded;
+- `logo/logo.svg`: canonical `hexSticker` composition, with the artwork embedded;
 - `logo/logo.png`: high-resolution raster logo; and
 - `logo/variants/g7_hexsticker.png`: copy of the final raster logo retained
   with its variant name; and

@@ -1,6 +1,6 @@
 # A range of functions
 
-#' @title Check availability of reticulate R package
+#' @title Check availability of \code{reticulate} R package
 #' @description Check whether the optional \code{reticulate} namespace can be
 #'   loaded before using Python interoperability.
 #' @param stop logical; whether to throw an error if \code{reticulate} is
@@ -34,34 +34,34 @@ check_reticulate <- function(stop = TRUE) {
   return(error)
 }
 
-#' @title Get the reticulate \code{tskit} Python module
+#' @title Get the \code{reticulate} \code{tskit} Python module
 #' @description This function imports the Python \code{tskit} module via
 #'   \code{reticulate}. If the Python module is not yet installed, it attempts
 #'   to install it first.
-#' @param object_name character name of the object holding the reticulate
+#' @param object_name character name of the object holding the \code{reticulate}
 #'   \code{tskit} module. If this object exists in the global R environment and
-#'   is a reticulate Python module, it is returned. Otherwise, the function
+#'   is a \code{reticulate} Python module, it is returned. Otherwise, the function
 #'   attempts to install and import \code{tskit} before returning it.
 #' @param force logical; force installation and/or import before returning the
-#'   reticulate Python module.
-#' @param object reticulate Python module.
+#'   \code{reticulate} Python module.
+#' @param object \code{reticulate} Python module.
 #' @param stop logical; whether to throw an error in \code{check_tskit_py}.
 #' @details This function is meant for users running \code{tskit <- get_tskit_py()}
 #'   or similar code, and for other functions in this package that need the
-#'   \code{tskit} reticulate Python module. The point of \code{get_tskit_py} is
+#'   \code{tskit} \code{reticulate} Python module. The point of \code{get_tskit_py} is
 #'   to avoid importing the module repeatedly; if it has been imported already,
-#'   we reuse that instance. This process can be sensitive to the reticulate
+#'   we reuse that instance. This process can be sensitive to the \code{reticulate}
 #'   Python setup, module availability, and internet access.
 #'
 #'   This Python interoperability requires the optional \code{reticulate}
 #'   R package. Install or update it with \code{install.packages("reticulate")}
 #'   before calling this function - this function does not install it.
-#' @return \code{get_tskit_py} returns the reticulate Python module \code{tskit}
+#' @return \code{get_tskit_py} returns the \code{reticulate} Python module \code{tskit}
 #'   if successful. Otherwise it throws an error (when \code{object_name} exists
-#'   but is not a reticulate Python module) or returns \code{simpleError}
+#'   but is not a \code{reticulate} Python module) or returns \code{simpleError}
 #'   (when \code{reticulate} is unavailable or Python module installation or
 #'   import failed). \code{check_tskit_py} returns \code{TRUE} if \code{object}
-#'   is a reticulate Python module or \code{FALSE} with a message otherwise,
+#'   is a \code{reticulate} Python module or \code{FALSE} with a message otherwise,
 #'   including when \code{reticulate} is unavailable.
 #' @examples
 #' \dontrun{
@@ -125,7 +125,7 @@ get_tskit_py <- function(object_name = "tskit", force = FALSE) {
   return(out)
 }
 
-#' @describeIn get_tskit_py Test whether \code{get_tskit_py} returned a reticulate Python module object
+#' @describeIn get_tskit_py Test whether \code{get_tskit_py} returned a \code{reticulate} Python module object
 #' @export
 check_tskit_py <- function(object, stop = FALSE) {
   dependency <- check_reticulate(stop = stop)
@@ -446,7 +446,7 @@ load_args_to_options <- function(
 #' @param skip_tables logical; if \code{TRUE}, load only non-table information.
 #' @param skip_reference_sequence logical; if \code{TRUE}, skip loading
 #'   reference genome sequence information.
-#' @details See the \code{tskit Python} equivalent at
+#' @details See the \code{tskit} Python equivalent at
 #'   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.load}.
 #' @return A \code{\link{TreeSequence}} object.
 #' @seealso \code{\link[=TreeSequence]{TreeSequence$new}}
@@ -483,7 +483,7 @@ ts_read <- ts_load
 #' @param skip_reference_sequence logical; if \code{TRUE}, skip loading
 #'   reference genome sequence information.
 #' @return A \code{\link{TableCollection}} object.
-#' @details See the \code{tskit Python} equivalent at
+#' @details See the \code{tskit} Python equivalent at
 #'   \url{https://github.com/tskit-dev/tskit/blob/dc394d72d121c99c6dcad88f7a4873880924dd72/python/tskit/tables.py#L3463}.
 #'   TODO: Update URL to TableCollection.load() method #104
 #'         https://github.com/HighlanderLab/RcppTskit/issues/104
@@ -881,10 +881,10 @@ rtsk_table_collection_py_to_r <- function(tc, cleanup = TRUE) {
   return(tc_r)
 }
 
-#' @title Transfer a tree sequence from reticulate Python to R
-#' @description This function saves a tree sequence from reticulate Python to
+#' @title Transfer a tree sequence from \code{reticulate} Python to R
+#' @description This function saves a tree sequence from \code{reticulate} Python to
 #'   temporary file on disk and reads it into R for use with \code{RcppTskit}.
-#' @param ts tree sequence in reticulate Python.
+#' @param ts tree sequence in \code{reticulate} Python.
 #' @param cleanup logical; delete the temporary file at the end of the function?
 #' @return A \code{\link{TreeSequence}} object.
 #' @details Because this transfer is via a temporary file,
@@ -921,10 +921,10 @@ ts_py_to_r <- function(ts, cleanup = TRUE) {
   return(ts_r)
 }
 
-#' @title Transfer a table collection from reticulate Python to R
-#' @description This function saves a table collection from reticulate Python
+#' @title Transfer a table collection from \code{reticulate} Python to R
+#' @description This function saves a table collection from \code{reticulate} Python
 #'   to temporary file on disk and reads it into R for use with \code{RcppTskit}.
-#' @param tc table collection in reticulate Python.
+#' @param tc table collection in \code{reticulate} Python.
 #' @param cleanup logical; delete the temporary file at the end of the function?
 #' @return A \code{\link{TableCollection}} object.
 #' @details Because this transfer is via a temporary file,

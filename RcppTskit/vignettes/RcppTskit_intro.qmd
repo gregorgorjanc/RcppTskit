@@ -15,9 +15,9 @@ knitr:
 
 ## Introduction
 
-This vignette introduces working with tree sequences in `R` using the
+This vignette introduces working with tree sequences in R using the
 `RcppTskit` package.
-`RcppTskit` provides `R` access to the `tskit C` application programming interface (API)
+`RcppTskit` provides R access to the `tskit` C application programming interface (API)
 [@jeffery2026population] <https://tskit.dev/tskit/docs/stable/c-api.html>.
 Python interoperability is an optional feature with a separate setup via
 `reticulate` R package.
@@ -35,33 +35,33 @@ show four typical use cases.
 ## Who is `RcppTskit` for?
 
 As summarised below,
-`Python` is the most widely used environment for working with tree sequences.
-Most `R` users who want to work with tree sequences
-are advised to start with the `tskit Python` API via
-the `R` package `reticulate` [@ushey2025reticulate]
+Python is the most widely used environment for working with tree sequences.
+Most R users who want to work with tree sequences
+are advised to start with the `tskit` Python API via
+the R package `reticulate` [@ushey2025reticulate]
 <https://rstudio.github.io/reticulate/>.
 See <https://tskit.dev/tutorials/tskitr.html>
 for a tutorial.
 This approach provides access to the most complete and mature API
 [@jeffery2026population]
 <https://tskit.dev/tskit/docs/stable/python-api.html>
-and interoperability with other `Python` packages.
+and interoperability with other Python packages.
 
-`RcppTskit` is primarily geared towards providing `R` access to the `tskit C` API
+`RcppTskit` is primarily geared towards providing R access to the `tskit` C API
 [@jeffery2026population],
 for cases where the `reticulate` approach is not optimal;
 for example, high-performance or low-level work with tree sequences.
 As a result, `RcppTskit` currently provides a limited set of functions
-because the `Python` API (and `reticulate`) already covers most needs.
-As the name suggests, `RcppTskit` leverages the `R` package `Rcpp`
+because the Python API (and `reticulate`) already covers most needs.
+As the name suggests, `RcppTskit` leverages the R package `Rcpp`
 [@eddelbuettel2026rcpp] <https://www.rcpp.org/>,
-which significantly lowers the barrier to using `C++` with `R`.
-However, we still need to write `C++` wrappers and expose them to `R`,
+which significantly lowers the barrier to using C++ with R.
+However, we still need to write C++ wrappers and expose them to R,
 so we recommend using `reticulate` first.
 To understand which functions are implemented,
-users should explore the `RcppTskit` help pages of `R` functions,
+users should explore the `RcppTskit` help pages of R functions,
 while developers should explore the underlying
-`RcppTskit:::rtsk_*` low-level `R` and `C++` functions.
+`RcppTskit:::rtsk_*` low-level R and C++ functions.
 
 ## State of the tree sequence ecosystem
 
@@ -73,43 +73,43 @@ Below is a quick summary of some of the tools relevant to `RcppTskit` as of Janu
 
 - `tskit` (<https://tskit.dev/tskit/docs/> and <https://github.com/tskit-dev/tskit/>)
   is the core toolkit for working with tree sequences.
-  It has an efficient `C` API and user-friendly `Python` API.
-  The `Python` API is a popular entry point for most users and
-  extends the `C` API in some aspects (for example, metadata encoding/decoding).
-  There is also a `Rust` API that wraps the `C` API.
+  It has an efficient C API and user-friendly Python API.
+  The Python API is a popular entry point for most users and
+  extends the C API in some aspects (for example, metadata encoding/decoding).
+  There is also a Rust API that wraps the C API.
 
 - `msprime` (<https://tskit.dev/msprime/docs/> and <https://github.com/tskit-dev/msprime/>)
   generates tree sequences with backward-in-time simulation.
-  It has a `Python` API and command line interface.
+  It has a Python API and command line interface.
 
 - `SLiM` (<https://messerlab.org/slim/> and <https://github.com/MesserLab/SLiM/>)
   generates tree sequences with forward-in-time simulation.
-  It is written in `C++` (with embedded `tskit C` library) and
+  It is written in C++ (with embedded `tskit` C library) and
   has both a command line and a graphical user interface.
   Its tree sequence recording is described in detail at
   <https://github.com/MesserLab/SLiM/blob/master/treerec/implementation.md>.
 
 - `pyslim` (<https://tskit.dev/pyslim/docs/> and <https://github.com/tskit-dev/pyslim/>)
-  provides a `Python` API for reading and modifying SLiM tree sequences,
-  or adapting tree sequences from other programs (e.g., msprime) for use in SLiM.
+  provides a Python API for reading and modifying `SLiM` tree sequences,
+  or adapting tree sequences from other programs (e.g., `msprime`) for use in `SLiM`.
 
 - `fwdpy11` (<https://molpopgen.github.io/fwdpy11/> and <https://github.com/molpopgen/fwdpy11/>)
   generates tree sequences with forward-in-time simulation.
-  Its `Python` API is built on a `C++` API (`fwdpp`).
+  Its Python API is built on a C++ API (`fwdpp`).
 
 - `stdpopsim` (<https://popsim-consortium.github.io/stdpopsim-docs/> and <https://github.com/popsim-consortium/stdpopsim/>)
   is a standard library of population genetic models used in simulations with
   `msprime` and `SLiM`.
-  It has a `Python` API and command line interface.
+  It has a Python API and command line interface.
 
 - `slendr` (<https://bodkan.net/slendr/> and <https://github.com/bodkan/slendr/>)
-  is an `R` package for describing population genetic models,
+  is an R package for describing population genetic models,
   simulating them with either `msprime` or `SLiM`, and
   analysing the resulting tree sequences using `tskit`.
 
 - `slimr` (<https://rdinnager.github.io/slimr/> and <https://github.com/rdinnager/slimr/>)
-  provides an `R` API for specifying and running SLiM scripts and analysing results in `R`.
-  It runs `SLiM` via the `R` package `processx`.
+  provides an R API for specifying and running `SLiM` scripts and analysing results in R.
+  It runs `SLiM` via the R package `processx`.
 
 The above tools enable work with tree sequences and/or generate them via simulation.
 There is a growing list of tools that estimate ARGs from observed genomic data
@@ -122,52 +122,52 @@ Notable examples include:
 `Threads` (<https://palamaralab.github.io/software/threads/> and <https://github.com/palamaraLab/threads/>).
 
 As described above, the tree sequence ecosystem is extensive.
-`Python` is the most widely used platform to interact with tree sequences,
+Python is the most widely used platform to interact with tree sequences,
 with comprehensive packages for simulation and analysis.
 
-There is interest in working with tree sequences in `R`.
-Because we can call `Python` from within `R` using the `reticulate R` package,
-there is no pressing need for a dedicated `R` API for work with tree sequences.
+There is interest in working with tree sequences in R.
+Because we can call Python from within R using the `reticulate` R package,
+there is no pressing need for a dedicated R API for work with tree sequences.
 As noted above, see <https://tskit.dev/tutorials/tskitr.html>
 for an example of this approach.
-This keeps the community focused on the `Python` collection of packages.
-While there are differences between `Python` and `R`,
-many `R` users should be able to follow
-the extensive `Python` API documentation, examples, and tutorials listed above,
+This keeps the community focused on the Python collection of packages.
+While there are differences between Python and R,
+many R users should be able to follow
+the extensive Python API documentation, examples, and tutorials listed above,
 especially those at <https://tskit.dev/tutorials/>.
 
-To provide an idiomatic `R` interface to some population genetic simulation steps
+To provide an idiomatic R interface to some population genetic simulation steps
 and operations with tree sequences,
 `slendr` implements bespoke functions and wrappers to interact with
 `msprime`, `SLiM`, and `tskit`.
-It uses `reticulate` to interact with the `Python` APIs of these packages,
-which further lowers barriers for `R` users to work with tree sequences.
+It uses `reticulate` to interact with the Python APIs of these packages,
+which further lowers barriers for R users to work with tree sequences.
 
-One downside of using `reticulate` is the overhead of calling `Python` functions.
-This overhead is minimal for most analyses because a user calls a few `Python` functions,
-which do all the work (including loops) on the `Python` side,
-which often call the `tskit C` API.
-However, the overhead can be limiting for repeated calls between `R` and `Python`,
-such as calling `Python` functions from within an `R` loop, say
+One downside of using `reticulate` is the overhead of calling Python functions.
+This overhead is minimal for most analyses because a user calls a few Python functions,
+which do all the work (including loops) on the Python side,
+which often call the `tskit` C API.
+However, the overhead can be limiting for repeated calls between R and Python,
+such as calling Python functions from within an R loop, say
 to record a tree sequence in a multi-generation simulation with many individuals.
 
 ## Aims for `RcppTskit`
 
 Given the current tree sequence ecosystem,
-the aims of the `RcppTskit` package are to provide an easy-to-install `R` package
+the aims of the `RcppTskit` package are to provide an easy-to-install R package
 that supports users in four typical cases of working with
 tree sequences and table collections.
 The authors are open to expanding this scope
 depending on user demand and engagement.
 The four typical use cases are:
 
-1. Load a tree sequence into `R` and summarise it,
+1. Load a tree sequence into R and summarise it,
 
-2. Pass a tree sequence between `R` and reticulate or standard `Python`,
+2. Pass a tree sequence between R and `reticulate` or standard Python,
 
-3. Call the `tskit C` API from `C++` in an `R` session or script, and
+3. Call the `tskit` C API from C++ in an R session or script, and
 
-4. Call the `tskit C` API from `C++` in another `R` package.
+4. Call the `tskit` C API from C++ in another R package.
 
 Examples for all of these cases are provided below
 after we describe the implemented data and class model,
@@ -177,45 +177,45 @@ and API alignment across the languages.
 
 `RcppTskit` represents a tree sequence as a
 lightweight `R6` object of class `TreeSequence`.
-The `R6` interface is used so that `TreeSequence` method calls in `R`
-resemble the `tskit Python` API,
-particularly when compared to reticulate `Python`.
+The `R6` interface is used so that `TreeSequence` method calls in R
+resemble the `tskit` Python API,
+particularly when compared to `reticulate` Python.
 Internally, `TreeSequence` stores an external pointer (`externalptr`)
 to a heap-allocated object `tsk_treeseq_t`
-from the `tskit C` API.
+from the `tskit` C API.
 
 Most methods (for example, `ts$num_individuals()` and `ts$dump()`)
-call the `tskit C` API via `Rcpp`,
+call the `tskit` C API via `Rcpp`,
 so the calls are fast.
 The external pointer is exposed as `TreeSequence$xptr`
-for developers and advanced users who work with `C++`.
-In `C++`, the external pointer has type `rtsk_treeseq_t`,
+for developers and advanced users who work with C++.
+In C++, the external pointer has type `rtsk_treeseq_t`,
 and the tree sequence memory is released by the `Rcpp::XPtr`
-finaliser when the pointer is garbage-collected in `R`.
+finaliser when the pointer is garbage-collected in R.
 
 `RcppTskit` also provides a lightweight `TableCollection` `R6` class,
 which stores an external pointer to a heap-allocated object
-`tsk_table_collection_t` from the `tskit C` API.
-In `C++`, the external pointer has type `rtsk_table_collection_t`
+`tsk_table_collection_t` from the `tskit` C API.
+In C++, the external pointer has type `rtsk_table_collection_t`
 with the same memory management as `rtsk_treeseq_t`.
 
 While tree sequence (`tsk_treeseq_t`) is an immutable object,
 table collection (`tsk_table_collection_t`) is a mutable object,
 which can be edited.
-Only some `R` functions for expanding and editing are implemented to date,
-so use `Python` or  `C/C++` for the missing `R` functionality.
+Only some R functions for expanding and editing are implemented to date,
+so use Python or  C/C++ for the missing R functionality.
 
 ## API alignment across the languages
 
 `RcppTskit` aims to keep naming, arguments, defaults, and behaviour aligned
 with upstream `tskit` APIs whenever practical.
-The `RcppTskit R` API intentionally combines an `R6` object model inspired by
-the `tskit Python` API with operations that map directly to the `tskit C` API.
+The `RcppTskit` R API intentionally combines an `R6` object model inspired by
+the `tskit` Python API with operations that map directly to the `tskit` C API.
 For example, `tc$node_table_add_row()` maps to `tsk_node_table_add_row()`
 without recreating Python's nested `tc.nodes.add_row()` object model.
-The `RcppTskit C++` API closely mirrors the `tskit C` API functions and
-semantics, but is deliberately `R` oriented.
-When we intentionally deviate (for example, to support `R` idioms or safety),
+The `RcppTskit` C++ API closely mirrors the `tskit` C API functions and
+semantics, but is deliberately R oriented.
+When we intentionally deviate (for example, to support R idioms or safety),
 we document the rationale and test the chosen behaviour.
 
 ## Four typical use cases
@@ -245,7 +245,7 @@ if (!test) {
 }
 ```
 
-### 1) Load a tree sequence into `R` and summarise it
+### 1) Load a tree sequence into R and summarise it
 
 ```{r}
 #| label: use_case_1
@@ -271,11 +271,11 @@ ts2 <- tc$tree_sequence()
 help(package = "RcppTskit")
 ```
 
-Developers should also explore the internal `R` and `C++` functions.
+Developers should also explore the internal R and C++ functions.
 Their names all start with `rtsk_` and are accessible via `RcppTskit:::`.
 Since these are internal functions we instruct the lint tool `jarl`
 not to warn about their use.
-For example, the above `R` function `ts_load()` effectively calls:
+For example, the above R function `ts_load()` effectively calls:
 
 ```{r}
 #| label: use_case_1_dev_funcs
@@ -297,9 +297,9 @@ methods::is(xptr)
 RcppTskit:::rtsk_treeseq_get_num_individuals(xptr)
 ```
 
-### 2) Pass a tree sequence between `R` and reticulate or standard `Python`
+### 2) Pass a tree sequence between R and `reticulate` or standard Python
 
-The reticulate Python approach requires the optional `reticulate` R package and
+The `reticulate` Python approach requires the optional `reticulate` R package and
 a Python environment containing `tskit`.
 Install the R package before running these examples:
 
@@ -362,7 +362,7 @@ if (check_tskit_py(tskit)) {
 }
 ```
 
-### 3) Call the `tskit C` API from `C++` in an `R` session or script
+### 3) Call the `tskit` C API from C++ in an R session or script
 
 ```{r}
 #| label: use_case_3
@@ -395,17 +395,17 @@ ts_num_individuals2(ts$xptr)
 ts$num_individuals()
 ```
 
-### 4) Call the `tskit C` API from `C++` in another `R` package
+### 4) Call the `tskit` C API from C++ in another R package
 
-To call the `tskit C` API in your own `R` package via `Rcpp`
+To call the `tskit` C API in your own R package via `Rcpp`
 you can leverage `RcppTskit`,
 which simplifies installation,
 provides the required linking flags,
-bootstraps your work by providing some `RcppTskit C++` functions
-that interface `tskit C` API and `R`, etc.
+bootstraps your work by providing some `RcppTskit` C++ functions
+that interface `tskit` C API and R, etc.
 To leverage `RcppTskit`,
 follow the steps below and check how they are implemented in
-the demo `R` package `RcppTskitTestLinking` at
+the demo R package `RcppTskitTestLinking` at
 <https://github.com/HighlanderLab/RcppTskitTestLinking/>.
 
 a) Open the `DESCRIPTION` file and
@@ -416,13 +416,13 @@ b) Create `R/YourPackage-package.R` and add at minimum:
   `#' @import RcppTskit` in one line and `"_PACKAGE"` in another line,
   assuming you use `devtools` to manage your package `NAMESPACE` imports.
 
-c) Add `#include <RcppTskit.hpp>` as needed to your `C++` header files in `src` directory.
+c) Add `#include <RcppTskit.hpp>` as needed to your C++ header files in `src` directory.
 
-d) Add `// [[Rcpp::depends(RcppTskit)]]` to your `C++` files in `src` directory.
+d) Add `// [[Rcpp::depends(RcppTskit)]]` to your C++ files in `src` directory.
 
-e) Add `// [[Rcpp::plugins(RcppTskit)]]` to your `C++` files in `src` directory.
+e) Add `// [[Rcpp::plugins(RcppTskit)]]` to your C++ files in `src` directory.
 
-f) Call the `RcppTskit C++` API and the `tskit C` API as needed in `src` directory.
+f) Call the `RcppTskit` C++ API and the `tskit` C API as needed in `src` directory.
 
 g) Configure your package build to link against the `RcppTskit` library
   with the following steps:
@@ -470,14 +470,14 @@ rtsk_treeseq_get_num_individuals2(ts$xptr)
 
 ## Conclusion
 
-`RcppTskit` provides `R` access to the `tskit C` API with a simple installation
+`RcppTskit` provides R access to the `tskit` C API with a simple installation
 and a lightweight interface.
 It provides a limited number of functions because most users can and should use
-`reticulate` to call the `tskit Python` API from `R`.
-The implemented `RcppTskit R` API closely mimics `tskit Python` API
+`reticulate` to call the `tskit` Python API from R.
+The implemented `RcppTskit` R API closely mimics `tskit` Python API
 to streamline their use.
 When this option is not optimal, developers and advanced users
-can easily use the `RcppTskit C++` API and `tskit C` API.
+can easily use the `RcppTskit` C++ API and `tskit` C API.
 
 ## Session information
 

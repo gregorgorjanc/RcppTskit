@@ -6,9 +6,9 @@
 \description{
 An \code{R6} class holding an external pointer to
 a tree sequence object. As an \code{R6} class, method-calling looks Pythonic
-and hence resembles the \code{tskit Python} API. Since the class only
+and hence resembles the \code{tskit} Python API. Since the class only
 holds the pointer, it is lightweight. Currently there is a limited set of
-\code{R} methods for working with the tree sequence.
+R methods for working with the tree sequence.
 }
 \examples{
 
@@ -344,7 +344,7 @@ reference genome sequence information.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.load}.
   }
   \subsection{Returns}{
@@ -383,7 +383,7 @@ is(ts)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.dump}.
   }
   \subsection{Returns}{
@@ -431,7 +431,7 @@ ts$write(dump_file) # alias
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.dump_tables}.
   }
   \subsection{Returns}{
@@ -509,7 +509,7 @@ returned tree sequence.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.simplify}.
   The input tree sequence is unchanged.
   }
@@ -563,9 +563,9 @@ ts
 \if{html}{\out{<a id="method-TreeSequence-r_to_py"></a>}}
 \if{latex}{\out{\hypertarget{method-TreeSequence-r_to_py}{}}}
 \subsection{\code{TreeSequence$r_to_py()}}{
-  This function saves a tree sequence from \code{R} to disk
-  and loads it into reticulate \code{Python} for use with the
-  \code{tskit Python} API.
+  This function saves a tree sequence from R to disk
+  and loads it into \code{reticulate} Python for use with the
+  \code{tskit} Python API.
   \subsection{Usage}{
     \if{html}{\out{<div class="r">}}
     \preformatted{TreeSequence$r_to_py(tskit_module = get_tskit_py(), cleanup = TRUE)}
@@ -574,7 +574,7 @@ ts
   \subsection{Arguments}{
     \if{html}{\out{<div class="arguments">}}
     \describe{
-      \item{\code{tskit_module}}{reticulate \code{Python} module of \code{tskit}.
+      \item{\code{tskit_module}}{\code{reticulate} Python module of \code{tskit}.
 By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
       \item{\code{cleanup}}{logical; delete the temporary file at the end of the function?}
     }
@@ -585,7 +585,7 @@ By default, it calls \code{\link{get_tskit_py}} to obtain the module.}
   See \code{\link{get_tskit_py}} for installation and Python setup.
   }
   \subsection{Returns}{
-    \code{TreeSequence} object in reticulate \code{Python}.
+    \code{TreeSequence} object in \code{reticulate} Python.
   }
   \subsection{Examples}{
     \if{html}{\out{<div class="r example copy">}}
@@ -647,7 +647,7 @@ sequence length.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.variants}.
   }
   \subsection{Returns}{
@@ -680,7 +680,7 @@ is.list(v2)
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_provenances}.
   }
   \subsection{Returns}{
@@ -707,7 +707,7 @@ ts$num_provenances()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_populations}.
   }
   \subsection{Returns}{
@@ -734,7 +734,7 @@ ts$num_populations()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_migrations}.
   }
   \subsection{Returns}{
@@ -761,7 +761,7 @@ ts$num_migrations()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_individuals}.
   }
   \subsection{Returns}{
@@ -788,7 +788,7 @@ ts$num_individuals()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_samples}.
   }
   \subsection{Returns}{
@@ -829,7 +829,7 @@ do not filter by time.}
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.samples}.
   }
   \subsection{Returns}{
@@ -857,7 +857,7 @@ ts$samples()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_nodes}.
   }
   \subsection{Returns}{
@@ -884,7 +884,7 @@ ts$num_nodes()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_nodes}.
   }
   \subsection{Returns}{
@@ -911,7 +911,7 @@ ts$num_edges()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_trees}.
   }
   \subsection{Returns}{
@@ -938,7 +938,7 @@ ts$num_trees()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_sites}.
   }
   \subsection{Returns}{
@@ -965,7 +965,7 @@ ts$num_sites()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.num_mutations}.
   }
   \subsection{Returns}{
@@ -992,7 +992,7 @@ ts$num_mutations()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.sequence_length}.
   }
   \subsection{Returns}{
@@ -1023,7 +1023,7 @@ ts$sequence_length()
   sequence are discrete integer values.
 
 
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.discrete_genome}.
   }
   \subsection{Returns}{
@@ -1053,7 +1053,7 @@ ts2$discrete_genome()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.has_reference_sequence}.
   }
   \subsection{Returns}{
@@ -1083,7 +1083,7 @@ ts2$has_reference_sequence()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.time_units}.
   }
   \subsection{Returns}{
@@ -1114,7 +1114,7 @@ ts$time_units()
   discrete integer values.
 
 
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.discrete_time}.
   }
   \subsection{Returns}{
@@ -1144,7 +1144,7 @@ ts2$discrete_time()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.min_time}.
   }
   \subsection{Returns}{
@@ -1171,7 +1171,7 @@ ts$min_time()
     \if{html}{\out{</div>}}
   }
   \subsection{Details}{
-    See the \code{tskit Python} equivalent at
+    See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.max_time}.
   }
   \subsection{Returns}{

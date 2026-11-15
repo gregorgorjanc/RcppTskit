@@ -1,6 +1,6 @@
 Type: Package
 Package: RcppTskit
-Title: 'R' Access to the 'tskit C' API
+Title: 'R' Access to the 'tskit' 'C' API
 Version: 0.3.0
 Date: 2026-08-21
 Authors@R: c(
@@ -23,16 +23,16 @@ Description: 'Tskit' enables efficient storage, manipulation, and analysis
     programming interfaces (APIs). The 'Python' API can be called from 'R'
     via the 'reticulate' package to load and analyse tree sequences as
     described at <https://tskit.dev/tutorials/tskitr.html>. 'RcppTskit'
-    provides 'R' access to the 'tskit C' API for cases where the
+    provides 'R' access to the 'tskit' 'C' API for cases where the
     'reticulate' option is not optimal; for example, high-performance or
     low-level work with tree sequences. Currently, 'RcppTskit' provides a
     limited set of functions because the 'Python' API and 'reticulate'
-    already cover most needs. The 'RcppTskit R' API combines an 'R6'
-    object model inspired by the 'tskit Python' API with operations that
-    map directly to the 'tskit C' API. The 'RcppTskit C++' API closely
-    mirrors the 'tskit C' API. Users should explore the 'RcppTskit' help
+    already cover most needs. The 'RcppTskit' 'R' API combines an 'R6'
+    object model inspired by the 'tskit' 'Python' API with operations that
+    map directly to the 'tskit' 'C' API. The 'RcppTskit' 'C++' API closely
+    mirrors the 'tskit' 'C' API. Users should explore the 'RcppTskit' help
     pages of 'R' functions, while developers should explore the
-    'RcppTskit:::rtsk_*' low-level 'R' and 'C++'' functions.
+    'RcppTskit:::rtsk_*' low-level 'R' and 'C++' functions.
 License: MIT + file LICENSE
 URL: https://github.com/HighlanderLab/RcppTskit
 BugReports: https://github.com/HighlanderLab/RcppTskit/issues

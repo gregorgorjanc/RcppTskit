@@ -24,7 +24,7 @@ A \code{\link{TableCollection}} object.
 Load a table collection from a file
 }
 \details{
-See the \code{tskit Python} equivalent at
+See the \code{tskit} Python equivalent at
   \url{https://github.com/tskit-dev/tskit/blob/dc394d72d121c99c6dcad88f7a4873880924dd72/python/tskit/tables.py#L3463}.
   TODO: Update URL to TableCollection.load() method #104
         https://github.com/HighlanderLab/RcppTskit/issues/104

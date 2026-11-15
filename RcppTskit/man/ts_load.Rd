@@ -24,7 +24,7 @@ A \code{\link{TreeSequence}} object.
 Load a tree sequence from a file
 }
 \details{
-See the \code{tskit Python} equivalent at
+See the \code{tskit} Python equivalent at
   \url{https://tskit.dev/tskit/docs/stable/python-api.html#tskit.load}.
 }
 \section{Functions}{

@@ -1,9 +1,10 @@
-# Notes on RcppTskit package development
+# Notes on `RcppTskit` package development
 
 ## Next TODOs
 
 ### Review and polish variants work
 
+```cpp
 struct rtsk_variant_iterator_state_t
 
 static void rtsk_variant_iterator_free
@@ -34,24 +35,26 @@ SEXP ts_sexp = R_NilValue; // TODO: remove?
 //   \item{\code{ts_sexp}}{Preserved \code{R} external-pointer object that
 //     keeps the tree sequence alive while the iterator exists. It remains
 //     \code{R_NilValue} until it is preserved.}
+```
 
 I would, however, rename the external-pointer alias:
-using rtsk_variant_iterator_xptr_t = Rcpp::XPtr<...>;
-instead of rtsk_variant_iterator_t, which currently sounds like the underlying state type.
+`using rtsk_variant_iterator_xptr_t = Rcpp::XPtr<...>;`
+instead of `rtsk_variant_iterator_t`, which currently sounds like the underlying state type.
 
-One important issue surfaced while documenting this: variant_initialized is set only after successful tsk_variant_init(). The tskit lifecycle rules require tsk_variant_free() even when initialization returns an error, because partial allocation may have occurred. Our unique_ptr error path currently only deletes the state and does not call tsk_variant_free(). We should address that immediately after settling the docstring and names.
+One important issue surfaced while documenting this: `variant_initialized` is set only after successful `tsk_variant_init()`. The `tskit` lifecycle rules require `tsk_variant_free()` even when initialization returns an error, because partial allocation may have occurred. Our `unique_ptr` error path currently only deletes the state and does not call `tsk_variant_free()`. We should address that immediately after settling the docstring and names.
 
-rtsk_variant_iterator_init mention copy is not implemented (a note from my postit)!?
+`rtsk_variant_iterator_init` mention copy is not implemented (a note from my postit)!?
 
-### This type of code will go into AlphaSimR
+### This type of code will go into `AlphaSimR`
 
-Tskit examples of building tree sequence in C
-extern/tskit/c/tests/testlib.c has lots of examples of constructing a tree sequence using C
-extern/tskit/c/tests/test_minimal_cpp.cpp has some C++ example too
-extern/tskit/c/examples/haploid_wright_fisher.c
-extern/tskit/c/examples/multichrom_wright_fisher_singlethreaded.c
-extern/tskit/c/examples/multichrom_wright_fisher.c
+`Tskit` examples of building tree sequence in C
+`extern/tskit/c/tests/testlib.c` has lots of examples of constructing a tree sequence using C
+`extern/tskit/c/tests/test_minimal_cpp.cpp` has some C++ example too
+`extern/tskit/c/examples/haploid_wright_fisher.c`
+`extern/tskit/c/examples/multichrom_wright_fisher_singlethreaded.c`
+`extern/tskit/c/examples/multichrom_wright_fisher.c`
 
+```cpp
 // [[Rcpp::export]]
 SEXP tc_grow(SEXP tc) {
   rtsk_table_collection_t tc_xptr(tc);
@@ -95,8 +98,10 @@ SEXP tc_grow(SEXP tc) {
   // or do we want to return ts?
 }
 
-* This PR nicely shows how slendr is dealing with ts objects
-  (it saves various ts information as attributes)
+```
+
+* This PR nicely shows how `slendr` is dealing with `ts` objects
+  (it saves various `ts` information as attributes)
   https://github.com/bodkan/slendr/pull/191/changes#diff-f46eb0da2f9267022ecc6e09316598fde6bdcd2f980963906dc041b5096f344f
 
 ## NEWS template
@@ -165,7 +170,7 @@ git push origin v0.2.0
 install.packages(c("usethis", "devtools"))
 ```
 
-### Code testing coverage with covr
+### Code testing coverage with `covr`
 
 https://covr.r-lib.org
 
@@ -202,7 +207,7 @@ To ignore multiple lines use `# nocov start/stop`.
 
 In `Rcpp` code use `// # nocov ...`.
 
-### Air formatter of R code
+### `air` formatter of R code
 
 https://usethis.r-lib.org/reference/use_air.html
 ```
@@ -220,7 +225,7 @@ air format .
 air format --check .
 ```
 
-### Jarl linter of R code
+### `jarl` linter of R code
 
 https://jarl.etiennebacher.com
 
@@ -231,7 +236,7 @@ jarl check .
 jarl check --fix .
 ```
 
-### clang-format of C/C++ code
+### `clang-format` of C/C++ code
 
 https://clang.llvm.org/docs/ClangFormat.html
 
@@ -265,7 +270,7 @@ pre-commit run clang-format src/RcppTskit.cpp
 pre-commit run clang-format --all-files
 ```
 
-### clang-tidy linter of C/C++ code
+### `clang-tidy` linter of C/C++ code
 
 https://clang.llvm.org/extra/clang-tidy/
 

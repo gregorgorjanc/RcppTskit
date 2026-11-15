@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppTskit.R
 \name{check_reticulate}
 \alias{check_reticulate}
-\title{Check availability of reticulate R package}
+\title{Check availability of \code{reticulate} R package}
 \usage{
 check_reticulate(stop = TRUE)
 }
